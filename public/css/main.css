@@ -152,7 +152,7 @@ input:-ms-input-placeholder {
 }
 
 input::-ms-input-placeholder {
-    color: #a0aec0
+    color: #a0aec0;
 }
 
 input::placeholder {
