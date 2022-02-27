@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Movie App</title>
-
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/footer.css">
     <livewire:styles>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
@@ -40,15 +40,36 @@
         </div>
     </nav>
     @yield('content')
-    <footer class="border border-t border-gray-800">
-        <div class="container mx-auto text-sm px-4 py-6">
-            <span>Nguồn phim do <a href="http://inguon.com/" class="underline hover:text-gray-300">inguon</a> cung cấp.</span>
-        </div>
-        <div class="container mx-auto text-sm px-4 py-6">
-            <span>Mọi chi tiết liên hệ </span>
-            <a href="https://telegram.me/brevis_ng">Brevis</a>
-        </div>
-    </footer>
+    <footer>
+<div class="footer">
+<div class="container"><div class="bar"><div class="bar-wrap">
+<div class="links">
+<img src="/img/final.gif" alt="Phim 3X">
+<br>
+<div class="copyright">Copyright 2022 © <a href="http://www.inguon.com/" title="Phim Mới">Inguon.com</a> <br> <p>Xem phim mới miễn phí nhanh chất lượng cao. Xem Phim online Việt Sub, Thuyết minh, lồng tiếng chất lượng HD. Xem phim nhanh online chất lượng cao <a title="KUBET" href="http://i999.com" target="_blank" rel="noopener">I9999</a></p><br></div></div><div class="textlink">
+<div class="hotlink"> <h3 class="phimaz-foot">Phim Mới</h3> 
+@foreach ($listCategory as $category)
+    @if($category['pipid'] =='0')
+    <a href="" title="Phim Lẻ">{{$category['name']}}</a> 
+    @endif                  
+@endforeach
+</div>
+<div class="hotlink"> <h3 class="phimaz-foot">Thể loại</h3> 
+@foreach ($listCategory as $category)
+    @if($category['pipid'] =='1')
+    <a href="" title="Phim Lẻ">{{$category['name']}}</a> 
+    @endif                  
+@endforeach
+</div>
+<div class="hotlink"> <h3 class="phimaz-foot">Quốc Gia</h3> 
+@foreach ($listCategory as $category)
+    @if($category['pipid'] =='2')
+    <a href="" title="Phim Lẻ">{{$category['name']}}</a> 
+    @endif                  
+@endforeach
+</div>
+</div>
+<div class="social"><a href="#" class="call"><span data-icon="7" class="icon"></span> <span class="info"><span class="follow">Email liên hệ:</span> <span class="num">inguon@gmail.com</span></span></a></div><div class="clear"></div></div></div></div></div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div><div id="easy-top"></div></footer>
     <livewire:scripts>
     @yield('scripts')
 </body>

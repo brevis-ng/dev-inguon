@@ -22,17 +22,16 @@ class MoviesController extends Controller
             // 't' => '16',
             // 'h' => '24',
         ])->json()['list'];
-
-        $japanAnime = Http::get('https://api.bdxzyapi.com/api.php/provide/vod', [
+        $listCategory = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'list',
-            't' => '29',
-        ])->json()['list'];
+             't' => '1',
+        ])->json()['class'];
+
 
         $viewModel = new MoviesViewModel(
             $newMoviesToday,
-            // $japanAnime,
+            $listCategory
         );
-
         return view('movies.index', $viewModel);
     }
 
@@ -70,7 +69,12 @@ class MoviesController extends Controller
             'ids' => $id,
         ])->json()['list'];
 
-        $viewModel = new MovieViewModel($movie);
+        $listCategory = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'list',
+             't' => '1',
+        ])->json()['class'];
+
+        $viewModel = new MovieViewModel($movie, $listCategory);
 
         return view('movies.show', $viewModel);
     }

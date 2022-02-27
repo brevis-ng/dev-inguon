@@ -1,0 +1,97 @@
+.footer {
+    background: url(//ezphimmoi.net/wp-content/themes/halimmovies/media/img/micro_carbon.png);
+    min-height: 100px;
+    padding: 20px 25px 15px;
+    border-top: 3px solid #dacb46;
+    border-bottom: 1px solid #111;
+    margin-top: 20px;
+}
+.container {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+footer .bar {
+    padding: 20px 0;
+}
+footer .bar-wrap {
+    font-size: 12px;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+    width: 100%;
+}
+.links {
+    float: left;
+    list-style: none outside none;
+    position: relative;
+    width: 25%;
+    margin-right: 60px;
+}
+.copyright {
+    color: #788;
+    margin-top: 10px;
+}
+.textlink {
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.hotlink {
+    float: left;
+    margin-right: 40px;
+}
+.phimaz-foot {
+    font: 24px/25px 'UTMCafetaRegular';
+    color: #44E2FF;
+    display: block;
+    padding-bottom: 5px;
+}
+.social {
+    position: absolute;
+    right: 0;
+    top: 25px;
+}
+.clear {
+    clear: both;
+    line-height: 0;
+    overflow: hidden;
+    display: block;
+    height: 0;
+    max-height: 0;
+}
+.social a {
+    color: #788;
+    margin-left: 20px;
+    text-decoration: none;
+}
+.social .icon {
+    display: inline-block;
+    font-size: 36px;
+    margin-right: 5px;
+    vertical-align: middle;
+    -webkit-transition: -webkit-transform .3s linear;
+    -moz-transition: -moz-transform .3s linear;
+    -ms-transition: -ms-transform .3s linear;
+    -o-transition: -o-transform .3s linear;
+    transition: transform .3s linear;
+}
+.social .info {
+    display: inline-block;
+    vertical-align: middle;
+}
+.social .info .follow {
+    display: block;
+}
+.social .info .num {
+    display: block;
+}
+.hotlink a {
+    color: #fff;
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+    font-size: 12px;
+}
