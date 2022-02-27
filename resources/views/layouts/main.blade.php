@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Movie App</title>
+    <title>Phim Hay | Phim HD Vietsub | Xem Phim Online | Xem Phim Nhanh | 3X Phim - 3X TV</title>
 
     <link rel="stylesheet" href="/css/main.css">
     <livewire:styles>
@@ -12,7 +12,7 @@
 </head>
 <body class="font-sans bg-gray-900 text-white">
     <nav class="border-b border-gray-800">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between px-4 py-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 py-6">
             <ul class="flex flex-col md:flex-row items-center">
                 <li>
                     <a href="{{ route('movies.index') }}">
@@ -20,13 +20,48 @@
                     </a>
                 </li>
                 <li class="md:ml-16 mt-3 md:mt-0">
-                    <a href="{{ route('movies.index') }}" class="hover:text-gray-300">Movies</a>
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-300">3XPHIM</a>
                 </li>
                 <li class="md:ml-6 mt-3 md:mt-0">
-                    <a href="{{ route('movies.index') }}" class="hover:text-gray-300">TV Shows</a>
+                    <div class="dropdown inline-block relative grid-cols-2">
+                        <span class="hover:text-gray-300">THỂ LOẠI</span>
+                        <ul class="dropdown-menu absolute hidden pt-1 bg-gray-900" id="sub-menu">
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Hành Động</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Võ Thuật</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Tình Cảm</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Hoạt Hình</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Hài Hước</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Viễn Tưởng</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Cổ Trang</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Phiêu Lưu</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Tâm Lý</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Khoa Học</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Hình Sự</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Ma - Kinh Dị</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Chiến Tranh</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Âm Nhạc</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Thể Thao</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Thần Thoại</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Game show</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Truyền Hình</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Chiếu Rạp</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Anime</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Sắp Chiếu</a></li>
+                            <li><a class="hover:text-orange-500 py-2 px-4 block whitespace-no-wrap" href="">Phim Thuyết Minh</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="md:ml-6 mt-3 md:mt-0">
-                    <a href="{{ route('actors.index') }}" class="hover:text-gray-300">Actors</a>
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-300">QUỐC GIA</a>
+                </li>
+                <li class="md:ml-6 mt-3 md:mt-0">
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-300">NĂM PHÁT HÀNH</a>
+                </li>
+                <li class="md:ml-6 mt-3 md:mt-0">
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-300">PHIM LẺ</a>
+                </li>
+                <li class="md:ml-6 mt-3 md:mt-0">
+                    <a href="{{ route('movies.index') }}" class="hover:text-gray-300">PHIM BỘ</a>
                 </li>
             </ul>
             <div class="flex flex-col md:flex-row items-center">
