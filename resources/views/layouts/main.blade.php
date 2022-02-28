@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,11 +15,14 @@
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 </head>
+
 <body class="font-sans bg-gray-900 text-white">
     @include('layouts.header')
+    @include('layouts.slider')
     @yield('content')
     @include('layouts.footer')
     <livewire:scripts>
-    @yield('scripts')
+        @yield('scripts')
 </body>
+
 </html>
