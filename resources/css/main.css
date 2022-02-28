@@ -3,13 +3,14 @@
 @tailwind components;
 
 @font-face {
-    font-family: 'Roboto';
-    src: local('Roboto'), url(../fonts/Roboto-Regular-webfont.ttf) format('ttf');
+    font-family: "Roboto";
+    src: local("Roboto"), url(../fonts/Roboto-Regular-webfont.ttf) format("ttf");
     src: url(../fonts/Roboto-Regular-webfont.eot);
-    src: url(../fonts/Roboto-Regular-webfont.eot?#iefix) format('embedded-opentype'),
-         url(../fonts/Roboto-Regular-webfont.woff) format('woff'),
-         url(../fonts/Roboto-Regular-webfont.ttf) format('truetype'),
-         url(../fonts/Roboto-Regular-webfont.svg#robotoregular) format('svg');
+    src: url(../fonts/Roboto-Regular-webfont.eot?#iefix)
+            format("embedded-opentype"),
+        url(../fonts/Roboto-Regular-webfont.woff) format("woff"),
+        url(../fonts/Roboto-Regular-webfont.ttf) format("truetype"),
+        url(../fonts/Roboto-Regular-webfont.svg#robotoregular) format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -42,3 +43,55 @@
 #sub-menu li a:hover {
     color: #ed8936;
 }
+
+<<<<<<< HEAD
+.footer{
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    position: fixed;
+    height: 100px;
+}
+=======
+.owl-carousel .item h4 {
+    color: #fff;
+    font-weight: 400;
+    margin-top: 0rem;
+}
+
+.owl-carousel .item {
+    height: 10rem;
+    background: #4dc7a0;
+    padding: 1rem;
+}
+
+.icon-next {
+    content: "\276F";
+}
+
+.fa {
+    font-family: "Roboto" !important;
+    font-size: 46px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-step-forward:before {
+    content: "\276F";
+}
+
+.fa-step-backward:before {
+    content: "\276E";
+}
+
+.fa-step-forward:hover {
+    background-color: #4dc7a0;
+}
+
+.fa-step-backward:hover {
+    background-color: #4dc7a0;
+}
+>>>>>>> 7d99b561b32fe8d8f7d48fab0a3cf879d2bebbd0
