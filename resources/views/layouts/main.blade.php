@@ -17,7 +17,7 @@
 <body class="font-sans bg-gray-900 text-white">
     @include('layouts.header')
     @yield('content')
-    @include('layouts._footer')
+    @include('layouts.footer')
     <livewire:scripts>
     @yield('scripts')
 </body>

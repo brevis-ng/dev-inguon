@@ -9,16 +9,28 @@ use Spatie\ViewModels\ViewModel;
 class MoviesViewModel extends ViewModel
 {
     public $movies;
+    public $nowPlayingMovies;
+    public $msg;
 
-    // public function __construct($popularMovies, $nowPlayingMovies, $genres)
-    public function __construct($movies)
+    public function __construct($movies, $msg = null)
     {
         $this->movies = $movies;
+        $this->msg = $msg;
     }
 
     public function movies()
     {
         return $this->formatMovies($this->movies);
+    }
+
+    public function nowPlayingMovies()
+    {
+        return $this->formatMovies($this->nowPlayingMovies);
+    }
+
+    public function msg()
+    {
+        return $this->msg;
     }
 
     private function formatMovies($movies)

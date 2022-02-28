@@ -112,48 +112,37 @@ class MoviesController extends Controller
      */
     public function genre($genre_name)
     {
-        $genre_id = 1;
         switch ($genre_name)
         {
             case 'phim-hoat-hinh':
-                $genre_id = 4;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(4);
                 break;
             case 'phim-hanh-dong':
-                $genre_id = 6;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(6);
                 break;
             case 'phim-hai':
-                $genre_id = 7;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(7);
                 break;
             case 'phim-tinh-cam':
-                $genre_id = 8;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(8);
                 break;
             case 'phim-khoa-hoc-vien-tuong':
-                $genre_id = 9;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(9);
                 break;
             case 'phim-khung-bo':
-                $genre_id = 10;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(10);
                 break;
             case 'phim-toi-pham':
-                $genre_id = 11;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(11);
                 break;
             case 'phim-chien-tranh':
-                $genre_id = 12;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(12);
                 break;
             case 'phim-tai-lieu':
-                $genre_id = 20;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(20);
                 break;
             case 'phim-kich-tinh':
-                $genre_id = 21;
-                $movies = $this->get_movies_genre($genre_id);
+                $movies = $this->get_movies_genre(21);
                 break;
             default:
                 abort(404);
@@ -162,11 +151,77 @@ class MoviesController extends Controller
         return view('movies.index', $viewModel);
     }
 
-    private function get_movies_genre($genre_id)
+    /**
+     * Display the specified resource from api.
+     *
+     * @param  str  $country_name
+     * @return \Illuminate\Http\Response
+     */
+    public function countries($country_name)
+    {
+        switch ($country_name)
+        {
+            case 'phim-trung-quoc':
+                $movies = $this->get_movies_genre(13);
+                break;
+            case 'phim-nhat-ban':
+                $movies = $this->get_movies_genre(23);
+                break;
+            case 'phim-thai-lan':
+                $movies = $this->get_movies_genre(13);
+                break;
+            case 'phim-han-quoc':
+                $movies = $this->get_movies_genre(22);
+                break;
+            case 'phim-au-my':
+                $movies = $this->get_movies_genre(16);
+                break;
+            case 'phim-dai-loan':
+                $movies = $this->get_movies_genre(15);
+                break;
+            case 'phim-hong-kong':
+                $movies = $this->get_movies_genre(14);
+                break;
+            case 'phim-an-do':
+                $movies = $this->get_movies_genre(13);
+                break;
+            default:
+                abort(404);
+        };
+        $viewModel = new MoviesViewModel($movies);
+        return view('movies.index', $viewModel);
+    }
+
+    /**
+     * Display the specified resource from api.
+     *
+     * @param  str  $country_name
+     * @return \Illuminate\Http\Response
+     */
+    public function list($type)
+    {
+        switch ($type)
+        {
+            case 'phim-le':
+                // $movies = $this->get_movies_genre(1);
+                $movies = $this->get_movies_genre(6);
+                break;
+            case 'phim-bo':
+                // $movies = $this->get_movies_genre(2);
+                $movies = $this->get_movies_genre(2);
+                break;
+            default:
+                abort(404);
+        };
+        $viewModel = new MoviesViewModel($movies);
+        return view('movies.index', $viewModel);
+    }
+
+    private function get_movies_genre($id)
     {
         $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
-            't' => $genre_id,
+            't' => $id,
         ])->json()['list'];
         
         return $movies;
