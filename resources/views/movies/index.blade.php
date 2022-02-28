@@ -1,9 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container mx-auto px-4 pt-16" style="display:flex" id="movies-content">
+    <div>
+        @include('layouts.slider')
+    </div>
+    <div class="container mx-auto px-4 pt-2" style="display:flex" id="movies-content">
         <div class="popular-movies w-4/5">
-            <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">@isset($msg){{ $movies[0]['type'] }}@else Phim Mới Cập Nhật @endisset</h2>
+            <h2 class="uppercase tracking-wider text-orange-500 text-2xl font-semibold">@isset($msg){{ $movies[0]['type'] }}@else Phim Mới Cập Nhật @endisset</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 @foreach ($movies as $movie)
                     <x-movie-card :movie="$movie" />
