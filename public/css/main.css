@@ -21720,6 +21720,15 @@ video {
   color: #ed8936;
 }
 
+.footer{
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+  position: fixed;
+  height: 100px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
