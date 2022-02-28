@@ -26,11 +26,11 @@
         float: right;
         right: 10px;
     }
+
     .owl-carousel .item {
         height: 20rem;
     }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" />
@@ -40,30 +40,32 @@
     </h2>
     <div class="owl-carousel owl-theme mt-5">
         @foreach ($movies as $movie)
-        <div class="item" style="background-image: url({{$movie['poster_path']}})">
-            <script>
-                jQuery(document).ready(function($) {
-                    $('.owl-carousel').owlCarousel({
-                        loop: true,
-                        margin: 10,
-                        nav: true,
-                        navText: ['<i class="fa fa-step-backward"></i>', '<i class="fa fa-step-forward" aria-hidden="true"></i>'],
-                        responsive: {
-                            0: {
-                                items: 1
-                            },
-                            600: {
-                                items: 3
-                            },
-                            1000: {
-                                items: 5
+        <a href="{{ route('movies.show', $movie['id']) }}">
+            <div class="item" style="background-image: url({{$movie['poster_path']}})">
+                <script>
+                    jQuery(document).ready(function($) {
+                        $('.owl-carousel').owlCarousel({
+                            loop: true,
+                            margin: 10,
+                            nav: true,
+                            navText: ['<i class="fa fa-step-backward"></i>', '<i class="fa fa-step-forward" aria-hidden="true"></i>'],
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                600: {
+                                    items: 3
+                                },
+                                1000: {
+                                    items: 5
+                                }
                             }
-                        }
+                        })
                     })
-                })
-            </script>
-            <a href="" class="text-lg mt-2 hover:text-gray-300 ">{{ $movie['title'] }}</a>
-        </div>
+                </script>
+            </div>
+            <span>{{ $movie['title'] }}</span>
+        </a>
         @endforeach
     </div>
 </div>

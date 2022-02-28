@@ -14,6 +14,8 @@
     <!-- Google font for error page -->
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="font-sans bg-gray-900 text-white">
