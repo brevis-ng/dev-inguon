@@ -22,6 +22,11 @@ class MoviesViewModel extends ViewModel
         return $this->formatMovies($this->movies);
     }
 
+    public function listCategory()
+    {
+        return $this->formatCategory($this->listCategory);
+    }
+
     public function nowPlayingMovies()
     {
         return $this->formatMovies($this->nowPlayingMovies);
@@ -37,6 +42,17 @@ class MoviesViewModel extends ViewModel
                 'type' => $movie['type_name'],
                 'remarks' => $movie['vod_remarks'],
             ];
+        });
+    }
+
+    private function formatCategory($categories)
+    {
+        return collect($categories)->map(function($category) {
+            return [
+                'type_id' => $category['type_id'],
+                'name' => $category['type_name'],
+                'pipid' => $category['type_pid'],
+            ];     
         });
     }
 }
