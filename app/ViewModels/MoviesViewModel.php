@@ -9,7 +9,6 @@ use Spatie\ViewModels\ViewModel;
 class MoviesViewModel extends ViewModel
 {
     public $movies;
-    public $nowPlayingMovies;
 
     // public function __construct($popularMovies, $nowPlayingMovies, $genres)
     public function __construct($movies)
@@ -20,16 +19,6 @@ class MoviesViewModel extends ViewModel
     public function movies()
     {
         return $this->formatMovies($this->movies);
-    }
-
-    public function listCategory()
-    {
-        return $this->formatCategory($this->listCategory);
-    }
-
-    public function nowPlayingMovies()
-    {
-        return $this->formatMovies($this->nowPlayingMovies);
     }
 
     private function formatMovies($movies)
@@ -43,17 +32,6 @@ class MoviesViewModel extends ViewModel
                 'remarks' => $movie['vod_remarks'],
                 'score' => $movie['vod_score'],
             ];
-        });
-    }
-
-    private function formatCategory($categories)
-    {
-        return collect($categories)->map(function($category) {
-            return [
-                'type_id' => $category['type_id'],
-                'name' => $category['type_name'],
-                'pipid' => $category['type_pid'],
-            ];     
         });
     }
 }
