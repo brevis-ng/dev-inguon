@@ -20,9 +20,20 @@ class MoviesController extends Controller
         $newMoviesToday = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
         ])->json()['list'];
+<<<<<<< HEAD
+        $listCategory = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'list',
+             't' => '1',
+        ])->json()['class'];
+        $viewModel = new MoviesViewModel(
+            $newMoviesToday,
+            $listCategory
+        );
+=======
 
         $viewModel = new MoviesViewModel($newMoviesToday);
 
+>>>>>>> 5b2f695cd7e5c3ff30ab465af6c4689fb3e0e9bd
         return view('movies.index', $viewModel);
     }
 
@@ -60,7 +71,12 @@ class MoviesController extends Controller
             'ids' => $id,
         ])->json()['list'];
 
-        $viewModel = new MovieViewModel($movie);
+        $listCategory = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'list',
+             't' => '1',
+        ])->json()['class'];
+
+        $viewModel = new MovieViewModel($movie, $listCategory);
 
         return view('movies.show', $viewModel);
     }

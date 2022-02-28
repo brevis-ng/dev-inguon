@@ -30,6 +30,7 @@ class MovieViewModel extends ViewModel
                 'lang' => $movie['vod_lang'],
                 'overview' => str_replace(str_split('<p>,</p>'), "", $movie['vod_content']),
                 'serial' => $movie['vod_serial'],
+                'score' => $movie['vod_score'],
                 'videos' => $m3u8Links,
             ];
         });
