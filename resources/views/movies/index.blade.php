@@ -1,14 +1,13 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container mx-auto px-4 pt-16">
-    <div class="popular-movies">
-        <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">PHIM ĐỀ CỬ</h2>
-        <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">Newest Updated Movies</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-            @foreach ($popularMovies as $movie)
-            <x-movie-card :movie="$movie" />
-            @endforeach
+    <div class="container mx-auto px-4 pt-16">
+        <div class="popular-movies">
+            <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">@isset($movies[0]['type']){{ $movies[0]['type'] }}@else Phim Mới Cập Nhật @endisset</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                @foreach ($movies as $movie)
+                    <x-movie-card :movie="$movie" />
+                @endforeach
 
         </div>
     </div> <!-- end pouplar-movies -->
