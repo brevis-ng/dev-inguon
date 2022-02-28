@@ -6,7 +6,6 @@
     <title>Phim Hay | Phim HD Vietsub | Xem Phim Online | Xem Phim Nhanh | 3X Phim - 3X TV</title>
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/footer.css">
     <livewire:styles>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
