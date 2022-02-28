@@ -622,18 +622,11 @@ video {
 
   src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df);
 
-<<<<<<< HEAD
-  src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df?#iefix) format('embedded-opentype'),
-         url(/fonts/Roboto-Regular-webfont.woff?c50f8a52f5d68f47010f058dfeefa4d1) format('woff'),
-         url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format('truetype'),
-         url(/fonts/Roboto-Regular-webfont.svg?89f89430f34de0d30c1c73c2c4442953#robotoregular) format('svg');
-=======
   src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df?#iefix)
             format("embedded-opentype"),
         url(/fonts/Roboto-Regular-webfont.woff?c50f8a52f5d68f47010f058dfeefa4d1) format("woff"),
         url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format("truetype"),
-        url(/fonts/Roboto-Regular-webfont.svg?f99a8d1531fdb202c81a8018c5c052f0#robotoregular) format("svg");
->>>>>>> 1e4166c5b2a970dd9a147ec54af66d63177ee86e
+        url(/fonts/Roboto-Regular-webfont.svg?89f89430f34de0d30c1c73c2c4442953#robotoregular) format("svg");
 
   font-weight: normal;
 
@@ -12548,6 +12541,7 @@ video {
   position: fixed;
   height: 100px;
 }
+
 .owl-carousel .item h4 {
   color: #fff;
   font-weight: 400;
@@ -12558,10 +12552,6 @@ video {
   height: 10rem;
   background: #4dc7a0;
   padding: 1rem;
-}
-
-.icon-next {
-  content: "\276F";
 }
 
 .fa {
@@ -12582,11 +12572,11 @@ video {
 }
 
 .fa-step-forward:hover {
-  background-color: #4dc7a0;
+  color: #4dc7a0;
 }
 
 .fa-step-backward:hover {
-  background-color: #4dc7a0;
+  color: #4dc7a0;
 }
 
 @media (min-width: 640px) {
