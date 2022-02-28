@@ -35,12 +35,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" />
 
-<div class="container mx-auto px-4 pt-16">
+<div class="container mx-auto px-4 pt-8">
     <h2 class="uppercase tracking-wider text-orange-500 text-lg font-semibold">PHIM ĐỀ CỬ
     </h2>
     <div class="owl-carousel owl-theme mt-5">
         @foreach ($movies as $movie)
-        <a href="{{ route('movies.show', $movie['id']) }}">
+        <a href="{{ route('movies.show', $movie['id'] )}}">
             <div class="item" style="background-image: url({{$movie['poster_path']}})">
                 <script>
                     jQuery(document).ready(function($) {

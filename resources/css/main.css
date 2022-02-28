@@ -44,6 +44,14 @@
     color: #ed8936;
 }
 
+.footer{
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    position: fixed;
+    height: 100px;
+}
 .owl-carousel .item h4 {
     color: #fff;
     font-weight: 400;
@@ -54,10 +62,6 @@
     height: 10rem;
     background: #4dc7a0;
     padding: 1rem;
-}
-
-.icon-next {
-    content: "\276F";
 }
 
 .fa {
@@ -78,9 +82,9 @@
 }
 
 .fa-step-forward:hover {
-    background-color: #4dc7a0;
+    color: #4dc7a0;
 }
 
 .fa-step-backward:hover {
-    background-color: #4dc7a0;
+    color: #4dc7a0;
 }

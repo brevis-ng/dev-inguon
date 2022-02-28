@@ -18,12 +18,12 @@
                 </div>
 
                 <p class="text-gray-300 mt-4">
-                    语言: {{ $movie['lang'] }}
+                    Ngôn ngữ: {{ $movie['lang'] }}
                 </p>
 
-                <p class="text-gray-300 mt-8">
-                    {{ $movie['overview'] }}
-                </p>
+                <div class="mt-3">
+                    {!! str_replace('"', '', $movie['overview']) !!}
+                </div>
 
                 <div x-data="{ isOpen: false }">
                     @if (count($movie['videos']) > 0)
@@ -34,19 +34,19 @@
                                 @endphp
                                 <button
                                     onclick="playVideo('{{ $link }}','')"
-                                    class="flex inline-flex items-center text-white bg-gray-800 rounded px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
+                                    class="inline-flex items-center text-white bg-gray-800 rounded px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
                                 >
                                     <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                                    <span class="ml-2">点击播放</span>
+                                    <span class="ml-2">XEM PHIM</span>
                                 </button>
                             @else
                                 @foreach ($movie['videos'] as $link)
                                     <button
-                                        onclick="playVideo('{{ $link }}', '第{{ $loop->index + 1 }}集')"
-                                        class="flex inline-flex items-center text-white bg-gray-800 rounded px-3 py-1 mt-3 ml-1 hover:bg-orange-600 transition ease-in-out duration-150"
+                                        onclick="playVideo('{{ $link }}', 'Tập {{ $loop->index + 1 }}')"
+                                        class="inline-flex items-center text-white bg-gray-800 rounded px-3 py-1 mt-3 ml-1 hover:bg-orange-600 transition ease-in-out duration-150"
                                     >
                                         <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                                        <span class="ml-2">第{{ $loop->index + 1 }}集</span>
+                                        <span class="ml-2">Tập {{ $loop->index + 1 }}</span>
                                     </button>
                                 @endforeach
                             @endif
