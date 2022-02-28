@@ -621,18 +621,11 @@ video {
 
   src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df);
 
-<<<<<<< HEAD
   src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df?#iefix)
             format("embedded-opentype"),
         url(/fonts/Roboto-Regular-webfont.woff?c50f8a52f5d68f47010f058dfeefa4d1) format("woff"),
         url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format("truetype"),
         url(/fonts/Roboto-Regular-webfont.svg?f99a8d1531fdb202c81a8018c5c052f0#robotoregular) format("svg");
-=======
-  src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df?#iefix) format('embedded-opentype'),
-         url(/fonts/Roboto-Regular-webfont.woff?c50f8a52f5d68f47010f058dfeefa4d1) format('woff'),
-         url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format('truetype'),
-         url(/fonts/Roboto-Regular-webfont.svg?f99a8d1531fdb202c81a8018c5c052f0#robotoregular) format('svg');
->>>>>>> 68ecc1163467f879afcb5c7790d0577f80ac0d2e
 
   font-weight: normal;
 
@@ -21728,7 +21721,6 @@ video {
   color: #ed8936;
 }
 
-<<<<<<< HEAD
 .footer{
   bottom: 0px;
   left: 0px;
@@ -21736,7 +21728,6 @@ video {
   margin-bottom: 0px;
   position: fixed;
   height: 100px;
-=======
 .owl-carousel .item h4 {
   color: #fff;
   font-weight: 400;
@@ -21776,7 +21767,6 @@ video {
 
 .fa-step-backward:hover {
   background-color: #4dc7a0;
->>>>>>> 7d99b561b32fe8d8f7d48fab0a3cf879d2bebbd0
 }
 
 @media (min-width: 640px) {
