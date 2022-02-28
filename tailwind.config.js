@@ -17,7 +17,10 @@ module.exports = {
 			'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif']
 		}
     },
-    variants: {},
+    variants: {
+        boxShadow: ['responsive', 'hover', 'focus'],
+        dropShadow: ['responsive', 'hover', 'focus'],
+    },
     plugins: [
         require('tailwindcss-spinner')(),
         require('tailwindcss'),
