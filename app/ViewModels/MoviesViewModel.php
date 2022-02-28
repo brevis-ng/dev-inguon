@@ -10,11 +10,12 @@ class MoviesViewModel extends ViewModel
 {
     public $movies;
     public $nowPlayingMovies;
+    public $msg;
 
-    // public function __construct($popularMovies, $nowPlayingMovies, $genres)
-    public function __construct($movies)
+    public function __construct($movies, $msg = null)
     {
         $this->movies = $movies;
+        $this->msg = $msg;
     }
 
     public function movies()
@@ -22,14 +23,14 @@ class MoviesViewModel extends ViewModel
         return $this->formatMovies($this->movies);
     }
 
-    public function listCategory()
-    {
-        return $this->formatCategory($this->listCategory);
-    }
-
     public function nowPlayingMovies()
     {
         return $this->formatMovies($this->nowPlayingMovies);
+    }
+
+    public function msg()
+    {
+        return $this->msg;
     }
 
     private function formatMovies($movies)
@@ -42,17 +43,6 @@ class MoviesViewModel extends ViewModel
                 'type' => $movie['type_name'],
                 'remarks' => $movie['vod_remarks'],
             ];
-        });
-    }
-
-    private function formatCategory($categories)
-    {
-        return collect($categories)->map(function($category) {
-            return [
-                'type_id' => $category['type_id'],
-                'name' => $category['type_name'],
-                'pipid' => $category['type_pid'],
-            ];     
         });
     }
 }

@@ -42,14 +42,14 @@
                 <div class="dropdown inline-block relative grid-cols-2">
                     <span class="hover:text-gray-300">QUỐC GIA</span>
                     <ul class="dropdown-menu absolute hidden pt-4 bg-gray-900 text-sm" id="sub-menu">
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Trung Quốc</a></li>
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Nhật Bản</a></li>
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Thái Lan</a></li>
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Hàn Quốc</a></li>
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Âu Mỹ</a></li>
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Đài Loan</a></li>
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Hồng Kông</a></li>
-                        <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Ấn Độ</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-trung-quoc') }}">Trung Quốc</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-nhat-ban') }}">Nhật Bản</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-thai-lan') }}">Thái Lan</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-han-quoc') }}">Hàn Quốc</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-au-my') }}">Âu Mỹ</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-dai-loan') }}">Đài Loan</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-hong-kong') }}">Hồng Kông</a></li>
+                        <li><a  href="{{ route('movies.countries', 'phim-an-do') }}">Ấn Độ</a></li>
                     </ul>
                 </div>
             </li>
@@ -64,10 +64,10 @@
                 </div>
             </li>
             <li class="md:ml-6 mt-3 md:mt-0">
-                <a href="{{ route('movies.index') }}" class="hover:text-gray-300">PHIM LẺ</a>
+                <a href="{{ route('movies.list', 'phim-le') }}" class="hover:text-gray-300">PHIM LẺ</a>
             </li>
             <li class="md:ml-6 mt-3 md:mt-0">
-                <a href="{{ route('movies.index') }}" class="hover:text-gray-300">PHIM BỘ</a>
+                <a href="{{ route('movies.list', 'phim-bo') }}" class="hover:text-gray-300">PHIM BỘ</a>
             </li>
         </ul>
         <div class="flex flex-col md:flex-row items-center">
