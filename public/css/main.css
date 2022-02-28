@@ -616,16 +616,17 @@ video {
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: "Roboto";
 
-  src: local('Roboto'), url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format('ttf');
+  src: local("Roboto"), url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format("ttf");
 
   src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df);
 
-  src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df?#iefix) format('embedded-opentype'),
-         url(/fonts/Roboto-Regular-webfont.woff?c50f8a52f5d68f47010f058dfeefa4d1) format('woff'),
-         url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format('truetype'),
-         url(/fonts/Roboto-Regular-webfont.svg?89f89430f34de0d30c1c73c2c4442953#robotoregular) format('svg');
+  src: url(/fonts/Roboto-Regular-webfont.eot?29e10a9d003d40b10cb2f5faf3b4e7df?#iefix)
+            format("embedded-opentype"),
+        url(/fonts/Roboto-Regular-webfont.woff?c50f8a52f5d68f47010f058dfeefa4d1) format("woff"),
+        url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format("truetype"),
+        url(/fonts/Roboto-Regular-webfont.svg?f99a8d1531fdb202c81a8018c5c052f0#robotoregular) format("svg");
 
   font-weight: normal;
 
@@ -12530,6 +12531,47 @@ video {
 
 #sub-menu li a:hover {
   color: #ed8936;
+}
+
+.owl-carousel .item h4 {
+  color: #fff;
+  font-weight: 400;
+  margin-top: 0rem;
+}
+
+.owl-carousel .item {
+  height: 10rem;
+  background: #4dc7a0;
+  padding: 1rem;
+}
+
+.icon-next {
+  content: "\276F";
+}
+
+.fa {
+  font-family: "Roboto" !important;
+  font-size: 46px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-step-forward:before {
+  content: "\276F";
+}
+
+.fa-step-backward:before {
+  content: "\276E";
+}
+
+.fa-step-forward:hover {
+  background-color: #4dc7a0;
+}
+
+.fa-step-backward:hover {
+  background-color: #4dc7a0;
 }
 
 @media (min-width: 640px) {
