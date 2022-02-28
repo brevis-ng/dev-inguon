@@ -147,7 +147,7 @@ class MoviesController extends Controller
             default:
                 abort(404);
         };
-        $viewModel = new MoviesViewModel($movies);
+        $viewModel = new MoviesViewModel($movies, 'THE LOAI');
         return view('movies.index', $viewModel);
     }
 
@@ -188,7 +188,7 @@ class MoviesController extends Controller
             default:
                 abort(404);
         };
-        $viewModel = new MoviesViewModel($movies);
+        $viewModel = new MoviesViewModel($movies, 'QUOC GIA');
         return view('movies.index', $viewModel);
     }
 
@@ -208,12 +208,12 @@ class MoviesController extends Controller
                 break;
             case 'phim-bo':
                 // $movies = $this->get_movies_genre(2);
-                $movies = $this->get_movies_genre(2);
+                $movies = $this->get_movies_genre(22);
                 break;
             default:
                 abort(404);
         };
-        $viewModel = new MoviesViewModel($movies);
+        $viewModel = new MoviesViewModel($movies, 'PHIM LE');
         return view('movies.index', $viewModel);
     }
 
