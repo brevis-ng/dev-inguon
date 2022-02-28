@@ -20,7 +20,7 @@
     @include('layouts.header')
     @include('layouts.slider')
     @yield('content')
-    @include('layouts._footer')
+    @include('layouts.footer')
     <livewire:scripts>
         @yield('scripts')
 </body>
