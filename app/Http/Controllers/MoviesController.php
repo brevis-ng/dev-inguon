@@ -26,8 +26,6 @@ class MoviesController extends Controller
             'ac' => 'list',
              't' => '1',
         ])->json()['class'];
-
-
         $viewModel = new MoviesViewModel(
             $newMoviesToday,
             $listCategory
@@ -69,7 +67,12 @@ class MoviesController extends Controller
             'ids' => $id,
         ])->json()['list'];
 
-        $viewModel = new MovieViewModel($movie);
+        $listCategory = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'list',
+             't' => '1',
+        ])->json()['class'];
+
+        $viewModel = new MovieViewModel($movie, $listCategory);
 
         return view('movies.show', $viewModel);
     }
