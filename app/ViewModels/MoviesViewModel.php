@@ -8,34 +8,23 @@ use Spatie\ViewModels\ViewModel;
 
 class MoviesViewModel extends ViewModel
 {
-    public $popularMovies;
+    public $movies;
     public $nowPlayingMovies;
-    public $genres;
 
     // public function __construct($popularMovies, $nowPlayingMovies, $genres)
-    public function __construct($newMoviesToday)
+    public function __construct($movies)
     {
-        $this->popularMovies = $newMoviesToday;
-        // $this->nowPlayingMovies = $japanAnime;
-        // $this->genres = $genres;
+        $this->movies = $movies;
     }
 
-    public function popularMovies()
+    public function movies()
     {
-        return $this->formatMovies($this->popularMovies);
+        return $this->formatMovies($this->movies);
     }
 
     public function nowPlayingMovies()
     {
         return $this->formatMovies($this->nowPlayingMovies);
-    }
-
-    public function genres()
-    {
-        return collect($this->genres)->mapWithKeys(function ($genre) {
-            // return [$genre['type_id'] => $genre['type_name']];
-            return [$genre['id'] => $genre['name']];
-        });
     }
 
     private function formatMovies($movies)
