@@ -626,7 +626,7 @@ video {
             format("embedded-opentype"),
         url(/fonts/Roboto-Regular-webfont.woff?c50f8a52f5d68f47010f058dfeefa4d1) format("woff"),
         url(/fonts/Roboto-Regular-webfont.ttf?633979ae6e8f1da2152025282ab78318) format("truetype"),
-        url(/fonts/Roboto-Regular-webfont.svg?89f89430f34de0d30c1c73c2c4442953#robotoregular) format("svg");
+        url(/fonts/Roboto-Regular-webfont.svg?f99a8d1531fdb202c81a8018c5c052f0#robotoregular) format("svg");
 
   font-weight: normal;
 
