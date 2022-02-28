@@ -8,28 +8,10 @@ use Spatie\ViewModels\ViewModel;
 class MovieViewModel extends ViewModel
 {
     public $movie;
-    public $listCategory;
 
-    public function __construct($movie,$listCategory)
+    public function __construct($movie)
     {
         $this->movie = $movie;
-        $this->listCategory = $listCategory;
-    }
-
-    public function listCategory()
-    {
-        return $this->formatCategory($this->listCategory);
-    }
-
-    private function formatCategory($categories)
-    {
-        return collect($categories)->map(function($category) {
-            return [
-                'type_id' => $category['type_id'],
-                'name' => $category['type_name'],
-                'pipid' => $category['type_pid'],
-            ];     
-        });
     }
 
     public function movie()
