@@ -44,6 +44,16 @@
     color: #ed8936;
 }
 
+<<<<<<< HEAD
+.footer{
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    position: fixed;
+    height: 100px;
+}
+=======
 .owl-carousel .item h4 {
     color: #fff;
     font-weight: 400;
@@ -84,3 +94,4 @@
 .fa-step-backward:hover {
     background-color: #4dc7a0;
 }
+>>>>>>> 7d99b561b32fe8d8f7d48fab0a3cf879d2bebbd0
