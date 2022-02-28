@@ -1,4 +1,4 @@
-<div class="border-gray-400 border-t-2 bg-gray-900" id="footer">
+<div class="border-gray-400 border-t-2 bg-gray-900 mt-4" id="footer">
     <div class="w-1200 text-center">
         <div class="py-5">
             <ul>
