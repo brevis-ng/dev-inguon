@@ -19,9 +19,8 @@ class MoviesController extends Controller
     {
         $newMoviesToday = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
-            // 't' => '16',
-            // 'h' => '24',
         ])->json()['list'];
+<<<<<<< HEAD
         $listCategory = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'list',
              't' => '1',
@@ -30,6 +29,11 @@ class MoviesController extends Controller
             $newMoviesToday,
             $listCategory
         );
+=======
+
+        $viewModel = new MoviesViewModel($newMoviesToday);
+
+>>>>>>> 5b2f695cd7e5c3ff30ab465af6c4689fb3e0e9bd
         return view('movies.index', $viewModel);
     }
 
@@ -109,5 +113,73 @@ class MoviesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display the specified resource from api.
+     *
+     * @param  str  $genre_name
+     * @return \Illuminate\Http\Response
+     */
+    public function genre($genre_name)
+    {
+        $genre_id = 1;
+        switch ($genre_name)
+        {
+            case 'phim-hoat-hinh':
+                $genre_id = 4;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-hanh-dong':
+                $genre_id = 6;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-hai':
+                $genre_id = 7;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-tinh-cam':
+                $genre_id = 8;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-khoa-hoc-vien-tuong':
+                $genre_id = 9;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-khung-bo':
+                $genre_id = 10;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-toi-pham':
+                $genre_id = 11;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-chien-tranh':
+                $genre_id = 12;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-tai-lieu':
+                $genre_id = 20;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            case 'phim-kich-tinh':
+                $genre_id = 21;
+                $movies = $this->get_movies_genre($genre_id);
+                break;
+            default:
+                abort(404);
+        };
+        $viewModel = new MoviesViewModel($movies);
+        return view('movies.index', $viewModel);
+    }
+
+    private function get_movies_genre($genre_id)
+    {
+        $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+            't' => $genre_id,
+        ])->json()['list'];
+        
+        return $movies;
     }
 }

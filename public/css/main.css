@@ -21710,6 +21710,16 @@ video {
   column-gap: 20px;
 }
 
+#sub-menu li a {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  display: block;
+  white-space: nowrap;
+}
+
+#sub-menu li a:hover {
+  color: #ed8936;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
