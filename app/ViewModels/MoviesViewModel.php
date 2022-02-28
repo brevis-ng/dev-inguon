@@ -42,6 +42,7 @@ class MoviesViewModel extends ViewModel
                 'id' => $movie['vod_id'],
                 'type' => $movie['type_name'],
                 'remarks' => $movie['vod_remarks'],
+                'score' => $movie['vod_score'],
             ];
         });
     }
