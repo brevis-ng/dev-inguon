@@ -1,21 +1,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" />
 
-<div class="container mx-auto px-4 pt-8">
-    <div class="owl-carousel owl-theme mt-5">
+<div class="container mx-auto px-4">
+    <div class="owl-carousel owl-theme mt-5 text-center">
         @foreach ($movies as $movie)
-        <a href="{{ route('movies.show', $movie['id'] )}}">
-            <div style="background-image: url({{$movie['poster_path']}}); height: 20rem;">
+        <a href="{{ route('movies.show', $movie['id'] )}}" class="text-center justify-center">
+            <img class="px-2 bg-loacal h-[300px]" src="{{$movie['poster_path']}}">
                 <script>
                     jQuery(document).ready(function($) {
                         $('.owl-carousel').owlCarousel({
                             loop: true,
-                            margin: 10,
                             autoplay: true,
-                            autoplaySpeed: 500,
+                            autoplaySpeed: 200,
                             autoplayHoverPause:true,
-                            autoplayTimeout: 1000,
+                            autoplayTimeout: 1500,
                             slideTransition: 'linear',
                             dots: false,
                             responsive: {
@@ -32,8 +30,8 @@
                         })
                     })
                 </script>
-            </div>
-            <span>{{ $movie['title'] }}</span>
+            </img>
+            <span class="mx-auto">{{ $movie['title'] }}</span>
         </a>
         @endforeach
     </div>
