@@ -24,7 +24,7 @@ class MovieViewModel extends ViewModel
             return [
                 'poster_path' => $movie['vod_pic'],
                 'title' => $movie['vod_name'],
-                'vote_average' => $movie['vod_up'] . " 赞成",
+                'vote_average' => (int)$movie['vod_up'],
                 'release_date' => $movie['vod_pubdate'] === "" ? $movie['vod_year'] : $movie['vod_pubdate'],
                 'genres' => $movie['vod_class'],
                 'lang' => $movie['vod_lang'],
@@ -33,6 +33,13 @@ class MovieViewModel extends ViewModel
                 'serial' => $movie['vod_serial'],
                 'score' => $movie['vod_score'],
                 'videos' => $m3u8Links,
+                'remarks' => $movie['vod_remarks'],
+                'area' => $movie['vod_area'],
+                'actor' => $movie['vod_actor'],
+                'actor' => explode(',', $movie['vod_actor']),
+                'director' => $movie['vod_director'],
+                'update' => $movie['vod_time'],
+                'down_url' => $movie['vod_down_url'],
             ];
         });
     }
