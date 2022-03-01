@@ -15,16 +15,21 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page=null)
     {
         $newMoviesToday = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
+            'pg' => $page
         ])->json()['list'];
+        $pageMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['pagecount'];
+
         $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
         ])->json()['list'];
 
-        $viewModel = new MoviesViewModel($newMoviesToday, $hightlightMovies);
+        $viewModel = new MoviesViewModel($newMoviesToday,$hightlightMovies,$pageMovies);
 
         return view('movies.index', $viewModel);
     }
@@ -162,32 +167,32 @@ class MoviesController extends Controller
      * @param  str  $country_name
      * @return \Illuminate\Http\Response
      */
-    public function countries($country_name)
+    public function countries($country_name,$page=null)
     {
         switch ($country_name) {
             case 'phim-trung-quoc':
-                $movies = $this->get_movies_genre(13);
+                $movies = $this->get_movies_genre(13,$page);
                 break;
             case 'phim-nhat-ban':
-                $movies = $this->get_movies_genre(23);
+                $movies = $this->get_movies_genre(23,$page);
                 break;
             case 'phim-thai-lan':
-                $movies = $this->get_movies_genre(13);
+                $movies = $this->get_movies_genre(13,$page);
                 break;
             case 'phim-han-quoc':
-                $movies = $this->get_movies_genre(22);
+                $movies = $this->get_movies_genre(22,$page);
                 break;
             case 'phim-au-my':
-                $movies = $this->get_movies_genre(16);
+                $movies = $this->get_movies_genre(16,$page);
                 break;
             case 'phim-dai-loan':
-                $movies = $this->get_movies_genre(15);
+                $movies = $this->get_movies_genre(15,$page);
                 break;
             case 'phim-hong-kong':
-                $movies = $this->get_movies_genre(14);
+                $movies = $this->get_movies_genre(14,$page);
                 break;
             case 'phim-an-do':
-                $movies = $this->get_movies_genre(13);
+                $movies = $this->get_movies_genre(13,$page);
                 break;
             default:
                 abort(404);
@@ -205,14 +210,14 @@ class MoviesController extends Controller
      * @param  str  $country_name
      * @return \Illuminate\Http\Response
      */
-    public function list($type)
+    public function list($type,$page=null)
     {
         switch ($type) {
             case 'phim-le':
-                $movies = $this->get_movies_type(1);
+                $movies = $this->get_movies_type(1,$page);
                 break;
             case 'phim-bo':
-                $movies = $this->get_movies_type(2);
+                $movies = $this->get_movies_type(2,$page);
                 break;
             default:
                 abort(404);
@@ -242,35 +247,19 @@ class MoviesController extends Controller
             'ac' => 'detail',
             't' => $id,
         ])->json()['list'];
+
+        $pageMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+            't' => $id,
+        ])->json()['pagecount'];
         if(count($movies)==0)
         abort(404);    
-        return $movies;
+        return [$movies,$pageMovies];
     }
 
     public function year($number)
     {
-        switch ($number) {
-            case '2017':
-                $movies = $this->get_movies_year(2017);
-                break;
-            case '2018':
-                $movies = $this->get_movies_year(2018);
-                break;
-            case '2019':
-                $movies = $this->get_movies_year(2019);
-                break;
-            case '2020':
-                $movies = $this->get_movies_year(2020);
-                break;
-            case '2021':
-                $movies = $this->get_movies_year(2021);
-                break;
-            case '2022':
-                $movies = $this->get_movies_year(2022);
-                break;
-            default:
-                abort(404);
-        };
+        $movies = $this->get_movies_year($number);
         $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
         ])->json()['list'];
