@@ -1,9 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div>
-        @include('layouts.slider')
-    </div>
+    @include('layouts.slider')
     <div class="container mx-auto px-4 pt-2" style="display:flex" id="movies-content">
         <div class="popular-movies w-4/5">
             <h2 class="uppercase tracking-wider text-orange-500 text-2xl font-semibold">@isset($msg){{ $movies[0]['type'] }}@else Phim Mới Cập Nhật @endisset</h2>

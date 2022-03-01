@@ -52,39 +52,3 @@
     position: fixed;
     height: 100px;
 }
-.owl-carousel .item h4 {
-    color: #fff;
-    font-weight: 400;
-    margin-top: 0rem;
-}
-
-.owl-carousel .item {
-    height: 10rem;
-    background: #4dc7a0;
-    padding: 1rem;
-}
-
-.fa {
-    font-family: "Roboto" !important;
-    font-size: 46px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-stroke-width: 0.2px;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.fa-step-forward:before {
-    content: "\276F";
-}
-
-.fa-step-backward:before {
-    content: "\276E";
-}
-
-.fa-step-forward:hover {
-    color: #4dc7a0;
-}
-
-.fa-step-backward:hover {
-    color: #4dc7a0;
-}
