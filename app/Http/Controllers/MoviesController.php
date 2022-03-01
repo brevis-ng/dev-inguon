@@ -221,4 +221,44 @@ class MoviesController extends Controller
         
         return $movies;
     }
+
+    public function year($number)
+    {
+        switch ($number)
+        {
+            case '2017':
+                $movies = $this->get_movies_year(2017);
+                break;
+            case '2018':
+                $movies = $this->get_movies_year(2018);
+                break;
+            case '2019':
+                $movies = $this->get_movies_year(2019);
+                break;
+            case '2020':
+                $movies = $this->get_movies_year(2020);
+                break;
+            case '2021':
+                $movies = $this->get_movies_year(2021);
+                break;
+            case '2022':
+                $movies = $this->get_movies_year(2022);
+                break;
+            default:
+                abort(404);
+        };
+        $viewModel = new MoviesViewModel($movies, 'NAM');
+        return view('movies.index', $viewModel);
+    }
+
+    private function get_movies_year($number)
+    {
+        $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['list'];
+        $movies = collect($movies);
+        $movies_filter = $movies->where('vod_year', (string)$number)->all();  
+        $movies_filter = array_values($movies_filter);
+        return collect($movies_filter);
+    }
 }
