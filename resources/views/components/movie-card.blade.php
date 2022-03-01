@@ -1,7 +1,10 @@
 <div class="mt-8 relative overflow-hidden rounded-md w-[272px] h-96" title="{{ $movie['title'] }}">
-    <a href="{{ route('movies.show', $movie['id']) }}">
-        <img src="{{ $movie['poster_path'] }}" alt="poster" class="object-cover w-full h-full" alt="{{ $movie['title'] }}">
-    </a>
+    <div class="relative flex-none inline-block w-[272px] h-96">
+        <div class="absolute bg-gray-400 opacity-50 rounded-lg blur object-cover w-full h-full"></div>
+        <a href="{{ route('movies.show', $movie['id']) }}" class="items-center relative">
+            <img src="{{ $movie['poster_path'] }}" alt="poster" class="object-cover w-full h-full" alt="{{ $movie['title'] }}">
+        </a>
+    </div>
     <div class="absolute py-2 bottom-0 inset-x-0 bg-gray-900 text-white leading-4 opacity-90">
         <a href="{{ route('movies.show', $movie['id']) }}" class="truncate mt-2 hover:text-gray-300">{{ $movie['title'] }}</a>
         <div class="flex items-center text-sm mt-1">

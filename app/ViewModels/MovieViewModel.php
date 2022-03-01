@@ -52,7 +52,7 @@ class MovieViewModel extends ViewModel
                 'remarks' => $movie['vod_remarks'],
                 'area' => $movie['vod_area'],
                 'actor' => $movie['vod_actor'],
-                'actor' => preg_split("/[^A-Za-z0-9\s+]/", $movie['vod_actor']),
+                'actor' => preg_split("/[^A-Za-z0-9\s]/", $movie['vod_actor']),
                 'director' => $movie['vod_director'],
                 'update' => $movie['vod_time'],
                 'down_url' => $movie['vod_down_url'],
