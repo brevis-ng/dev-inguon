@@ -107,8 +107,7 @@ class MoviesController extends Controller
      */
     public function genre($genre_name)
     {
-        switch ($genre_name)
-        {
+        switch ($genre_name) {
             case 'phim-hoat-hinh':
                 $movies = $this->get_movies_genre(4);
                 break;
@@ -154,8 +153,7 @@ class MoviesController extends Controller
      */
     public function countries($country_name)
     {
-        switch ($country_name)
-        {
+        switch ($country_name) {
             case 'phim-trung-quoc':
                 $movies = $this->get_movies_genre(13);
                 break;
@@ -195,15 +193,12 @@ class MoviesController extends Controller
      */
     public function list($type)
     {
-        switch ($type)
-        {
+        switch ($type) {
             case 'phim-le':
-                // $movies = $this->get_movies_genre(1);
-                $movies = $this->get_movies_genre(6);
+                $movies = $this->get_movies_type(1);
                 break;
             case 'phim-bo':
-                // $movies = $this->get_movies_genre(2);
-                $movies = $this->get_movies_genre(22);
+                $movies = $this->get_movies_type(2);
                 break;
             default:
                 abort(404);
@@ -212,13 +207,25 @@ class MoviesController extends Controller
         return view('movies.index', $viewModel);
     }
 
+    private function get_movies_type($type)
+    {
+        $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail'
+        ])->json()['list'];
+        $list = collect($movies);
+        $list_filter = $list->where('type_id_1', (string)$type)->all();
+        $list_filter = array_values($list_filter);
+        // dump($list_filter);
+        return collect($list_filter);
+    }
+
     private function get_movies_genre($id)
     {
         $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
             't' => $id,
         ])->json()['list'];
-        
+
         return $movies;
     }
 }
