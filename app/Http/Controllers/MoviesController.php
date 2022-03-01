@@ -218,7 +218,8 @@ class MoviesController extends Controller
             'ac' => 'detail',
             't' => $id,
         ])->json()['list'];
-        
+        if(count($movies)==0)
+        abort(404);    
         return $movies;
     }
 
@@ -259,6 +260,8 @@ class MoviesController extends Controller
         $movies = collect($movies);
         $movies_filter = $movies->where('vod_year', (string)$number)->all();  
         $movies_filter = array_values($movies_filter);
+        if(count($movies_filter)==0)
+        abort(404);
         return collect($movies_filter);
     }
 }
