@@ -20,8 +20,11 @@ class MoviesController extends Controller
         $newMoviesToday = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
         ])->json()['list'];
+        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['list'];
 
-        $viewModel = new MoviesViewModel($newMoviesToday);
+        $viewModel = new MoviesViewModel($newMoviesToday, $hightlightMovies);
 
         return view('movies.index', $viewModel);
     }
@@ -146,7 +149,10 @@ class MoviesController extends Controller
             default:
                 abort(404);
         };
-        $viewModel = new MoviesViewModel($movies, 'THE LOAI');
+        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['list'];
+        $viewModel = new MoviesViewModel($movies, $hightlightMovies, 'THE LOAI');
         return view('movies.index', $viewModel);
     }
 
@@ -186,7 +192,10 @@ class MoviesController extends Controller
             default:
                 abort(404);
         };
-        $viewModel = new MoviesViewModel($movies, 'QUOC GIA');
+        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['list'];
+        $viewModel = new MoviesViewModel($movies, $hightlightMovies, 'QUOC GIA');
         return view('movies.index', $viewModel);
     }
 
@@ -208,7 +217,10 @@ class MoviesController extends Controller
             default:
                 abort(404);
         };
-        $viewModel = new MoviesViewModel($movies, 'PHIM LE');
+        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['list'];
+        $viewModel = new MoviesViewModel($movies, $hightlightMovies, 'PHIM LE');
         return view('movies.index', $viewModel);
     }
 
@@ -236,8 +248,7 @@ class MoviesController extends Controller
 
     public function year($number)
     {
-        switch ($number)
-        {
+        switch ($number) {
             case '2017':
                 $movies = $this->get_movies_year(2017);
                 break;
@@ -259,7 +270,10 @@ class MoviesController extends Controller
             default:
                 abort(404);
         };
-        $viewModel = new MoviesViewModel($movies, 'NAM');
+        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['list'];
+        $viewModel = new MoviesViewModel($movies, $hightlightMovies, 'NAM');
         return view('movies.index', $viewModel);
     }
 
@@ -269,7 +283,7 @@ class MoviesController extends Controller
             'ac' => 'detail',
         ])->json()['list'];
         $movies = collect($movies);
-        $movies_filter = $movies->where('vod_year', (string)$number)->all();  
+        $movies_filter = $movies->where('vod_year', (string)$number)->all();
         $movies_filter = array_values($movies_filter);
         return collect($movies_filter);
     }
