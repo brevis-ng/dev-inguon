@@ -218,7 +218,7 @@ class MoviesController extends Controller
             'ac' => 'detail'
         ])->json()['list'];
         $list = collect($movies);
-        $list_filter = $list->wget_movies_genrere('type_id_1', (string)$type)->all();
+        $list_filter = $list->where('type_id_1', (string)$type)->all();
         $list_filter = array_values($list_filter);
         // dump($list_filter);
         return collect($list_filter);
