@@ -1,7 +1,7 @@
 <div class="mt-8">
     <a href="{{ route('movies.show', $movie['id']) }}">
-        <div style="height: 336px;">
-            <img src="{{ $movie['poster_path'] }}" alt="poster" class="hover:opacity-75 transition ease-in-out duration-150">
+        <div class="w-[272px] h-96">
+            <img src="{{ $movie['poster_path'] }}" alt="poster" class=" object-cover w-full h-full hover:opacity-75 transition ease-in-out duration-150">
         </div>
     </a>
     <i class="icon-play"></i>

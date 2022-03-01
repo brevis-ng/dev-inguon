@@ -489,6 +489,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: relative;
 }
 
+.-inset-0\.5 {
+  top: -0.125rem;
+  right: -0.125rem;
+  bottom: -0.125rem;
+  left: -0.125rem;
+}
+
+.-inset-0 {
+  top: -0px;
+  right: -0px;
+  bottom: -0px;
+  left: -0px;
+}
+
 .inset-x-2\/4 {
   left: 50%;
   right: 50%;
@@ -625,6 +639,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2rem;
 }
 
+.h-\[275px\] {
+  height: 275px;
+}
+
+.h-96 {
+  height: 24rem;
+}
+
 .w-6 {
   width: 1.5rem;
 }
@@ -655,6 +677,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-1\/5 {
   width: 20%;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-\[272px\] {
+  width: 272px;
 }
 
 .flex-none {
@@ -739,6 +769,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.25rem;
 }
 
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -781,8 +815,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
+.bg-pink-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 39 119 / var(--tw-bg-opacity));
+}
+
 .fill-current {
   fill: currentColor;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-3 {
@@ -985,8 +1029,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.drop-shadow-2xl {
-  --tw-drop-shadow: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
+.blur {
+  --tw-blur: blur(8px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
