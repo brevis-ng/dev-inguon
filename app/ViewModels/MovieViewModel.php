@@ -8,10 +8,26 @@ use Spatie\ViewModels\ViewModel;
 class MovieViewModel extends ViewModel
 {
     public $movie;
+    public $relatedMovies;
 
-    public function __construct($movie)
+    public function __construct($movie, $relatedMovies = null)
     {
         $this->movie = $movie;
+        $this->relatedMovies = $relatedMovies;
+    }
+
+    public function related()
+    {
+        return collect($this->relatedMovies)->map(function($movie) {
+            return [
+                'title' => $movie['vod_name'],
+                'poster_path' => $movie['vod_pic'],
+                'id' => $movie['vod_id'],
+                'type' => $movie['type_name'],
+                'remarks' => $movie['vod_remarks'],
+                'score' => $movie['vod_score'],
+            ];
+        })->random(6);
     }
 
     public function movie()
@@ -36,7 +52,7 @@ class MovieViewModel extends ViewModel
                 'remarks' => $movie['vod_remarks'],
                 'area' => $movie['vod_area'],
                 'actor' => $movie['vod_actor'],
-                'actor' => explode(',', $movie['vod_actor']),
+                'actor' => preg_split("/[^A-Za-z0-9\s+]/", $movie['vod_actor']),
                 'director' => $movie['vod_director'],
                 'update' => $movie['vod_time'],
                 'down_url' => $movie['vod_down_url'],
