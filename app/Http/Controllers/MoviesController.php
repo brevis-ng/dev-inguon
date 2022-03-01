@@ -60,6 +60,10 @@ class MoviesController extends Controller
             'ids' => $id,
         ])->json()['list'];
 
+        if (empty($movie)) {
+            abort(404);
+        }
+
         $related_movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
             't' => $movie[0]['type_id'],
@@ -68,6 +72,33 @@ class MoviesController extends Controller
         $viewModel = new MovieViewModel($movie, $related_movies);
 
         return view('movies.show', $viewModel);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function play($id)
+    {
+        $movie = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+            'ids' => $id,
+        ])->json()['list'];
+
+        if (empty($movie)) {
+            abort(404);
+        }
+
+        $related_movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+            't' => $movie[0]['type_id'],
+        ])->json()['list'];
+
+        $viewModel = new MovieViewModel($movie, $related_movies);
+
+        return view('movies.play', $viewModel);
     }
 
     /**
@@ -236,29 +267,7 @@ class MoviesController extends Controller
 
     public function year($number)
     {
-        switch ($number)
-        {
-            case '2017':
-                $movies = $this->get_movies_year(2017);
-                break;
-            case '2018':
-                $movies = $this->get_movies_year(2018);
-                break;
-            case '2019':
-                $movies = $this->get_movies_year(2019);
-                break;
-            case '2020':
-                $movies = $this->get_movies_year(2020);
-                break;
-            case '2021':
-                $movies = $this->get_movies_year(2021);
-                break;
-            case '2022':
-                $movies = $this->get_movies_year(2022);
-                break;
-            default:
-                abort(404);
-        };
+        $movies = $this->get_movies_year($number);
         $viewModel = new MoviesViewModel($movies, 'NAM');
         return view('movies.index', $viewModel);
     }
@@ -271,6 +280,8 @@ class MoviesController extends Controller
         $movies = collect($movies);
         $movies_filter = $movies->where('vod_year', (string)$number)->all();  
         $movies_filter = array_values($movies_filter);
+        if(count($movies_filter)==0)
+            abort(404);
         return collect($movies_filter);
     }
 }

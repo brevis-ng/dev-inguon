@@ -25,3 +25,6 @@ Route::get('list/{type}', [MoviesController::class, 'list'])->name('movies.list'
 
 // Phim theo năm
 Route::get('year/{number}', [MoviesController::class, 'year'])->name('movies.year');
+
+// Xem phim
+Route::get('/play/{id}', [MoviesController::class, 'play'])->name('movies.play');

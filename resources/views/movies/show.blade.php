@@ -3,7 +3,7 @@
 @section('content')
     <div class="movie-info ">
         <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row">
-            <div class="relative flex-none inline-block w-[272px] h-96">
+            <div class="relative flex-none inline-block w-[272px] h-96 my-auto">
                 <div class="absolute bg-pink-500 opacity-50 rounded-lg blur object-cover w-full h-full"></div>
                 <a href="javascript:void(0);" class="items-center relative">
                     <img src="{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }} poster" class="py-1 object-cover rounded-xl w-full h-full">
@@ -25,7 +25,7 @@
                     </svg>
                     <span class="ml-1">{!!($movie['vote_average'] + rand(999, 9999)) * 1.23 !!} lượt thích</span>
                 </div>
-                <div class="entry-data inline-grid grid-cols-2 w-full">
+                <div class="entry-data inline-grid grid-cols-2 w-full sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
                     <p class="text-gray-300 mt-4">
                         Ngôn ngữ: {{ $movie['lang'] }}
                     </p>
@@ -33,7 +33,10 @@
                         Trạng thái: {{ $movie['remarks'] }}
                     </p>
                     <p class="text-gray-300 mt-4">
-                        Năm phát hành: <a href="#" class="hover:text-orange-500">{{ $movie['release_date'] }}</a>
+                        @php
+                            $y = $movie['release_date']
+                        @endphp
+                        Năm phát hành: <a href="{{ route('movies.year', $y) }}" class="hover:text-orange-500">{{ $movie['release_date'] }}</a>
                     </p>
                     <p class="text-gray-300 mt-4">
                         Thể loại: <a href="#" class="hover:text-orange-500">{{ $movie['genres'] }}</a>
@@ -52,7 +55,14 @@
                         @endif
                     </p>
                     <p class="text-gray-300 mt-4">
-                        Quốc gia: <a href="#" class="hover:text-orange-500">{{ $movie['area'] }}</a>
+                        Quốc gia:
+                        @if (count($movie['area']) > 0)
+                            @foreach($movie['area'] as $name)
+                                @if ($name != '')
+                                    <a href="#" class="hover:text-orange-500">{{ $name }}</a><span>,&nbsp;</span>
+                                @endif
+                            @endforeach
+                        @endif
                     </p>
                     <p class="text-gray-300 mt-4">
                         Cập nhật: {{ $movie['update'] }}
@@ -61,39 +71,30 @@
                 <div class="mt-5">
                     {!! str_replace('"', '', $movie['overview']) !!}
                 </div>
-                <div x-data="{ isOpen: false }">
-                    @if (count($movie['videos']) > 0)
-                        <div class="mt-12">
-                            @if (count($movie['videos']) == 1)
-                                @php
-                                    $link = $movie['videos'][0]
-                                @endphp
-                                <button
-                                    onclick="playVideo('{{ $link }}','')"
-                                    class="inline-flex items-center text-white bg-gray-800 rounded px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150"
-                                >
-                                    <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                                    <span class="ml-2">XEM PHIM</span>
-                                </button>
-                            @else
-                                @foreach ($movie['videos'] as $link)
-                                    <button
-                                        onclick="playVideo('{{ $link }}', 'Tập {{ $loop->index + 1 }}')"
-                                        class="inline-flex items-center text-white bg-gray-800 rounded px-3 py-1 mt-3 ml-1 hover:bg-orange-600 transition ease-in-out duration-150"
-                                    >
-                                        <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                                        <span class="ml-2">Tập {{ $loop->index + 1 }}</span>
-                                    </button>
-                                @endforeach
-                            @endif
-                        </div>
-                    @endif
+                <div class="mt-12 inline-grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-7" >
+                    <button id="playBtn" class="inline-flex items-center text-white bg-indigo-500 rounded px-5 py-2 hover:bg-orange-600 transition ease-in-out duration-150">
+                        <svg class="w-6 fill-current" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                        <span class="ml-2">XEM PHIM</span>
+                    </button>
+                    <button id="downBtn" class="inline-flex items-center text-white bg-gray-700 rounded px-5 py-2 hover:bg-gray-500 transition ease-in-out duration-150">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span class="ml-2">TẢI VỀ</span>
+                    </button>
+                    <button id="shareBtn" class="inline-flex items-center text-white bg-gray-700 rounded px-5 py-2 hover:bg-gray-500 transition ease-in-out duration-150">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                        </svg>
+                        <span class="ml-2">CHIA SẺ</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </div> <!-- end movie-info -->
+    </div>
+    <!-- end movie-info -->
 
-    <div
+    <!-- <div
         id="div-videocontainer" 
         class="movie-play border-b border-gray-800" hidden>
         <div class="container mx-auto px-3 py-1 flex md:flex-row items-center">
@@ -122,7 +123,8 @@
         <div class="container mx-auto px-3 py-1 flex md:flex-row items-center">
             <span id="episode-video" class="ml-2 text-3xl"></span>
         </div>
-    </div> <!-- end movie-play -->
+    </div> -->
+    <!-- end movie-play -->
 
     <div class="related " >
         <div class="container mx-auto px-4 py-4">
@@ -181,5 +183,17 @@
         });
     }
 
+</script>
+
+<script type="text/javascript">
+    document.getElementById("playBtn").onclick = function () {
+        location.href = '{{ route("movies.play", $movie["id"]) }}';
+    };
+    document.getElementById("downBtn").onclick = function () {
+        location.href = '{{ route("movies.index") }}';
+    };
+    document.getElementById("shareBtn").onclick = function () {
+        location.href = '{{ route("movies.index") }}';
+    };
 </script>
 @endsection
