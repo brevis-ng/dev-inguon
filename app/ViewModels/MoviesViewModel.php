@@ -11,11 +11,13 @@ class MoviesViewModel extends ViewModel
     public $movies;
     public $nowPlayingMovies;
     public $msg;
+    public $pageMovies;
 
-    public function __construct($movies, $msg = null)
+    public function __construct($movies ,$msg = null, $pageMovies=null)
     {
         $this->movies = $movies;
         $this->msg = $msg;
+        $this->pageMovies = $pageMovies;
     }
 
     public function movies()
@@ -35,7 +37,7 @@ class MoviesViewModel extends ViewModel
 
     private function formatMovies($movies)
     {
-        return collect($movies)->map(function($movie) {
+        return collect($movies)->map(function ($movie) {
             return [
                 'title' => $movie['vod_name'],
                 'poster_path' => $movie['vod_pic'],
