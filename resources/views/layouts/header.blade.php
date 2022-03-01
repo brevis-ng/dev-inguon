@@ -57,9 +57,12 @@
                 <div class="dropdown inline-block relative grid-cols-2">
                     <span class="hover:text-gray-300">NĂM PHÁT HÀNH</span>
                     <ul class="dropdown-menu absolute hidden pt-4 bg-gray-900 text-sm" id="sub-menu">
-                        @for ($i = 2017; $i < 2023; $i++)
-                            <li><a  href="{{ route('movies.genre', 'phim-hanh-dong') }}">Phim {{ $i }}</a></li>
-                        @endfor
+                        <li><a  href="{{ route('movies.year', '2017') }}">Phim 2017</a></li>
+                        <li><a  href="{{ route('movies.year', '2018') }}">Phim 2018</a></li>
+                        <li><a  href="{{ route('movies.year', '2019') }}">Phim 2019</a></li>
+                        <li><a  href="{{ route('movies.year', '2020') }}">Phim 2020</a></li>
+                        <li><a  href="{{ route('movies.year', '2021') }}">Phim 2021</a></li>
+                        <li><a  href="{{ route('movies.year', '2022') }}">Phim 2022</a></li>
                     </ul>
                 </div>
             </li>
