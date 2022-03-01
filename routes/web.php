@@ -22,3 +22,6 @@ Route::get('country/{country_name}', [MoviesController::class, 'countries'])->na
 
 // Phim lẻ và Phim bộ
 Route::get('list/{type}', [MoviesController::class, 'list'])->name('movies.list');
+
+// Phim theo năm
+Route::get('year/{number}', [MoviesController::class, 'year'])->name('movies.year');

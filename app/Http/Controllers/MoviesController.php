@@ -112,8 +112,7 @@ class MoviesController extends Controller
      */
     public function genre($genre_name)
     {
-        switch ($genre_name)
-        {
+        switch ($genre_name) {
             case 'phim-hoat-hinh':
                 $movies = $this->get_movies_genre(4);
                 break;
@@ -159,8 +158,7 @@ class MoviesController extends Controller
      */
     public function countries($country_name)
     {
-        switch ($country_name)
-        {
+        switch ($country_name) {
             case 'phim-trung-quoc':
                 $movies = $this->get_movies_genre(13);
                 break;
@@ -200,15 +198,12 @@ class MoviesController extends Controller
      */
     public function list($type)
     {
-        switch ($type)
-        {
+        switch ($type) {
             case 'phim-le':
-                // $movies = $this->get_movies_genre(1);
-                $movies = $this->get_movies_genre(6);
+                $movies = $this->get_movies_type(1);
                 break;
             case 'phim-bo':
-                // $movies = $this->get_movies_genre(2);
-                $movies = $this->get_movies_genre(22);
+                $movies = $this->get_movies_type(2);
                 break;
             default:
                 abort(404);
@@ -217,13 +212,65 @@ class MoviesController extends Controller
         return view('movies.index', $viewModel);
     }
 
+    private function get_movies_type($type)
+    {
+        $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail'
+        ])->json()['list'];
+        $list = collect($movies);
+        $list_filter = $list->where('type_id_1', (string)$type)->all();
+        $list_filter = array_values($list_filter);
+        // dump($list_filter);
+        return collect($list_filter);
+    }
+
     private function get_movies_genre($id)
     {
         $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
             't' => $id,
         ])->json()['list'];
-        
+
         return $movies;
+    }
+
+    public function year($number)
+    {
+        switch ($number)
+        {
+            case '2017':
+                $movies = $this->get_movies_year(2017);
+                break;
+            case '2018':
+                $movies = $this->get_movies_year(2018);
+                break;
+            case '2019':
+                $movies = $this->get_movies_year(2019);
+                break;
+            case '2020':
+                $movies = $this->get_movies_year(2020);
+                break;
+            case '2021':
+                $movies = $this->get_movies_year(2021);
+                break;
+            case '2022':
+                $movies = $this->get_movies_year(2022);
+                break;
+            default:
+                abort(404);
+        };
+        $viewModel = new MoviesViewModel($movies, 'NAM');
+        return view('movies.index', $viewModel);
+    }
+
+    private function get_movies_year($number)
+    {
+        $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+        ])->json()['list'];
+        $movies = collect($movies);
+        $movies_filter = $movies->where('vod_year', (string)$number)->all();  
+        $movies_filter = array_values($movies_filter);
+        return collect($movies_filter);
     }
 }

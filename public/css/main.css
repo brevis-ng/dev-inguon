@@ -511,10 +511,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
-.bottom-0 {
-  bottom: 0px;
-}
-
 .z-50 {
   z-index: 50;
 }
@@ -536,21 +532,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-}
-
-.mx-1 {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-}
-
-.mx-8 {
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
-
-.mx-4 {
-  margin-left: 1rem;
-  margin-right: 1rem;
 }
 
 .mt-8 {
@@ -657,16 +638,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 2rem;
 }
 
-.h-\[272px\] {
-  height: 272px;
-}
-
 .h-\[300px\] {
   height: 300px;
-}
-
-.h-\[380px\] {
-  height: 380px;
 }
 
 .w-6 {
@@ -713,6 +686,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 60%;
 }
 
+<<<<<<< HEAD
 .w-\[300px\] {
   width: 300px;
 }
@@ -721,6 +695,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 215px;
 }
 
+=======
+>>>>>>> 0532b60ef586151e11ccdd531c675e58fa4bd7aa
 .flex-none {
   flex: none;
 }
@@ -866,6 +842,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
 .bg-blue-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(96 165 250 / var(--tw-bg-opacity));
@@ -885,6 +862,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-attachment: fixed;
 }
 
+=======
+>>>>>>> 0532b60ef586151e11ccdd531c675e58fa4bd7aa
 .fill-current {
   fill: currentColor;
 }
@@ -928,6 +907,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 1.5rem;
 }
 
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -963,6 +947,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 2rem;
 }
 
+<<<<<<< HEAD
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -978,16 +963,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0.5rem;
 }
 
+=======
+>>>>>>> 0532b60ef586151e11ccdd531c675e58fa4bd7aa
 .pl-5 {
   padding-left: 1.25rem;
 }
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pt-8 {
-  padding-top: 2rem;
 }
 
 .pl-8 {
