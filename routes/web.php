@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MoviesController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/{page?}', 'MoviesController@index')->name('movies.index');
@@ -28,4 +29,5 @@ Route::get('year/{number}/{page?}', [MoviesController::class, 'year'])->name('mo
 
 // Xem phim
 Route::get('/play/{id}', [MoviesController::class, 'play'])->name('movies.play');
-
+// post commment
+Route::post('ajax-request', 'CommentController@store');
