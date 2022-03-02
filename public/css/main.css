@@ -624,6 +624,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 1rem;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
 .ml-5 {
   margin-left: 1.25rem;
 }
@@ -632,6 +636,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 2rem;
 }
 
+<<<<<<< HEAD
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -640,6 +645,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 0.75rem;
 }
 
+=======
+>>>>>>> d796594489b3674dda701cd9343b1ee1cd2e3e97
 .block {
   display: block;
 }
@@ -780,6 +787,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 80%;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .w-1\/5 {
   width: 20%;
 }
@@ -796,6 +807,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 1.25rem;
 }
 
+<<<<<<< HEAD
 .w-10 {
   width: 2.5rem;
 }
@@ -812,6 +824,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 28rem;
 }
 
+=======
+>>>>>>> d796594489b3674dda701cd9343b1ee1cd2e3e97
 .flex-none {
   flex: none;
 }
@@ -914,17 +928,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.25rem;
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .rounded-sm {
   border-radius: 0.125rem;
 }
 
+<<<<<<< HEAD
 .rounded-t-lg {
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+=======
+.rounded-xl {
+  border-radius: 0.75rem;
+>>>>>>> d796594489b3674dda701cd9343b1ee1cd2e3e97
 }
 
 .border-b {
@@ -969,6 +984,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+.bg-blue-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+
 .bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
@@ -989,6 +1009,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
+<<<<<<< HEAD
 .bg-blue-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
@@ -1049,6 +1070,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(124 45 18 / var(--tw-bg-opacity));
 }
 
+=======
+>>>>>>> d796594489b3674dda701cd9343b1ee1cd2e3e97
 .fill-current {
   fill: currentColor;
 }
