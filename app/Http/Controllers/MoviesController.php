@@ -68,6 +68,10 @@ class MoviesController extends Controller
             'ids' => $id,
         ])->json()['list'];
 
+        if (empty($movie)) {
+            abort(404);
+        }
+
         $related_movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
             't' => $movie[0]['type_id'],
@@ -76,6 +80,33 @@ class MoviesController extends Controller
         $viewModel = new MovieViewModel($movie, $related_movies);
 
         return view('movies.show', $viewModel);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function play($id)
+    {
+        $movie = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+            'ids' => $id,
+        ])->json()['list'];
+
+        if (empty($movie)) {
+            abort(404);
+        }
+
+        $related_movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+            'ac' => 'detail',
+            't' => $movie[0]['type_id'],
+        ])->json()['list'];
+
+        $viewModel = new MovieViewModel($movie, $related_movies);
+
+        return view('movies.play', $viewModel);
     }
 
     /**

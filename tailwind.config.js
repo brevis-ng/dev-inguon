@@ -25,6 +25,7 @@ module.exports = {
         require('tailwindcss-spinner')(),
         require('tailwindcss'),
         require('autoprefixer'),
+        require('@tailwindcss/aspect-ratio'),
     ],
 	content: [
 		"./resources/**/*.blade.php",
