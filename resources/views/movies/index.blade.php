@@ -12,7 +12,17 @@
             </div>
             <div class="page-movies flex flex-row row-span-1 mt-8" style="margin-left: -0.75em;vertical-align: middle;">
                 @for($i = 1; $i <= $pageMovies; $i++)
-                    <div class="w-10 text-center bg-blue-600 ml-3 rounded-sm" ><a href="{{ route('movies.index', ['page' => $i]) }}">{{$i}}</a></div>
+                    @if($msg =="QUOC GIA" and $pageMovies >1)
+                    <div class="w-10 text-center bg-blue-600 ml-3 rounded-sm" ><a href="{{ route('movies.countries', ['page' => $i,'country_name' => $typeMovies]) }}">{{$i}}</a></div>
+                    @elseif($msg =="THE LOAI" and $pageMovies >1)
+                    <div class="w-10 text-center bg-blue-600 ml-3 rounded-sm" ><a href="{{ route('movies.genre', ['page' => $i,'genre_name' => $typeMovies]) }}">{{$i}}</a></div>
+                    @elseif($msg =="NAM" and $pageMovies >1)
+                    <div class="w-10 text-center bg-blue-600 ml-3 rounded-sm" ><a href="{{ route('movies.year', ['page' => $i,'number' => $typeMovies]) }}">{{$i}}</a></div>
+                    @elseif($msg =="PHIM LE" and $pageMovies >1)
+                    <div class="w-10 text-center bg-blue-600 ml-3 rounded-sm" ><a href="{{ route('movies.list', ['page' => $i,'type' => $typeMovies]) }}">{{$i}}</a></div>
+                    @elseif($msg==null and $pageMovies >1)
+                    <div class="w-10 text-center bg-blue-600 ml-3 rounded-sm" ><a href="{{ route('movies.index', ['page' => $i-1]) }}">{{$i}}</a></div>
+                    @endif
                 @endfor
             </div>
         </div> <!-- end pouplar-movies -->
