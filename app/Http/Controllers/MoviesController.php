@@ -259,7 +259,7 @@ class MoviesController extends Controller
         $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
         ])->json()['list'];
-        $viewModel = new MoviesViewModel(collect($movies[$page-1]), $hightlightMovies,count($movies), 'PHIM LE',$typeMovies);
+        $viewModel = new MoviesViewModel(collect($movies[$page-1]), $hightlightMovies,count($movies), $type == 'phim-le' ? 'PHIM LẺ' : 'PHIM BỘ',$typeMovies);
         return view('movies.index', $viewModel);
     }
 

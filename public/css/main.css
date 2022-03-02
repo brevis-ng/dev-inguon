@@ -636,12 +636,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 2rem;
 }
 
+
 .ml-3 {
   margin-left: 0.75rem;
 }
 
 .mr-3 {
   margin-right: 0.75rem;
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+
 }
 
 .block {
@@ -818,6 +823,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-md {
   max-width: 28rem;
+=======
+.w-auto {
+  width: auto;
 }
 
 .flex-none {
@@ -1196,6 +1204,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pl-4 {
   padding-left: 1rem;
+.pb-4 {
+  padding-bottom: 1rem;
 }
 
 .text-center {
