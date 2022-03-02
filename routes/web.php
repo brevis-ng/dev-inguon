@@ -24,8 +24,8 @@ Route::get('country/{country_name}/{page?}', [MoviesController::class, 'countrie
 Route::get('list/{type}/{page?}', [MoviesController::class, 'list'])->name('movies.list');
 
 // Phim theo năm
-Route::get('year/{number}', [MoviesController::class, 'year'])->name('movies.year');
+Route::get('year/{number}/{page?}', [MoviesController::class, 'year'])->name('movies.year');
 
 // Xem phim
 Route::get('/play/{id}', [MoviesController::class, 'play'])->name('movies.play');
-Route::get('year/{number}/{page?}', [MoviesController::class, 'year'])->name('movies.year');
+
