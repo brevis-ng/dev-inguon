@@ -38,18 +38,6 @@
                             </div>
                         </li>
                         @endforeach
-                        @foreach ($related as $m_r)
-                        <li class="py-2 relative flex">
-                            <div class="w-32 h-16 relative inline-block cursor-pointer">
-                                <div class="w-full h-full">
-                                    <a href="{{ route('movies.show', $m_r['id']) }}"><img class="w-full h-full object-cover rounded-xl" src="{{ $m_r['poster_path'] }}" alt="{{ $m_r['title'] }}"></a>
-                                </div>
-                            </div>
-                            <div class="inline-block px-4 w-40 inset-x-0 text-justify">
-                                <a href="{{ route('movies.show', $m_r['id']) }}">{{ $m_r['title'] }}</a>
-                            </div>
-                        </li>
-                        @endforeach
                     </ul>
                 @else
                     <div class="inline-grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">

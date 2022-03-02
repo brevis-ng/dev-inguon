@@ -532,6 +532,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   grid-row: span 1 / span 1;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -555,6 +559,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-auto {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mt-8 {
@@ -593,6 +602,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.25rem;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -621,12 +638,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 2rem;
 }
 
-.mt-6 {
-  margin-top: 1.5rem;
-}
-
-.mb-0 {
-  margin-bottom: 0px;
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
 
 .block {
@@ -1288,24 +1301,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 8px;
 }
 
-.scrollbar-track-slate-\37 00 {
-  --scrollbar-track: #334155 !important;
-}
-
 .scrollbar-thumb-slate-\37 00 {
   --scrollbar-thumb: #334155 !important;
-}
-
-.scrollbar-thumb-gray-\33 00 {
-  --scrollbar-thumb: #d1d5db !important;
-}
-
-.scrollbar-thumb-gray-\35 00 {
-  --scrollbar-thumb: #6b7280 !important;
-}
-
-.scrollbar-thumb-gray-\36 00 {
-  --scrollbar-thumb: #4b5563 !important;
 }
 
 .spinner {
@@ -1390,6 +1387,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 @media (min-width: 640px) {
 
+  .sm\:hidden {
+    display: none;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1449,6 +1450,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-top: 0.25rem;
   }
 
+  .md\:hidden {
+    display: none;
+  }
+
   .md\:h-96 {
     height: 24rem;
   }
@@ -1463,6 +1468,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:gap-0 {
+    gap: 0px;
   }
 }
 
