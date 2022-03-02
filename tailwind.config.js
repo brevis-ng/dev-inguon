@@ -26,6 +26,7 @@ module.exports = {
         require('tailwindcss'),
         require('autoprefixer'),
         require('@tailwindcss/aspect-ratio'),
+        require('tailwind-scrollbar'),
     ],
 	content: [
 		"./resources/**/*.blade.php",
