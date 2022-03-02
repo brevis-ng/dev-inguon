@@ -845,13 +845,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.75rem;
 }
 
-<<<<<<< HEAD
-=======
 .rounded-sm {
   border-radius: 0.125rem;
 }
 
->>>>>>> 729c5d3fe69bf7b27425195fecaff114c0d9b976
 .border-b {
   border-bottom-width: 1px;
 }
