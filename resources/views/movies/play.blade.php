@@ -40,7 +40,6 @@
         </div>
     </div>
     <!-- end movie-info -->
-
     <div class="related " >
         <div class="container mx-auto px-4 py-4">
             <h1>CÓ THỂ BẠN SẼ THÍCH</h1>
@@ -62,6 +61,9 @@
             </div>
         </div>
     </div>
+    <!-- area comment -->
+        @include('movies.comment')
+    <!-- end comment are -->
 </div>
 
 @endsection
