@@ -17,17 +17,14 @@ class MoviesController extends Controller
      */
     public function index($page=null)
     {
-        $newMoviesToday = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+        $jsonResponse = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
             'pg' => $page
-        ])->json()['list'];
-        $pageMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
-            'ac' => 'detail',
-        ])->json()['pagecount'];
+        ])->json();
 
-        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
-            'ac' => 'detail',
-        ])->json()['list'];
+        $hightlightMovies = $jsonResponse['list'];
+        $pageMovies = $jsonResponse['pagecount'];
+        $newMoviesToday = $jsonResponse['list'];
 
         $viewModel = new MoviesViewModel($newMoviesToday,$hightlightMovies,$pageMovies);
 
@@ -270,6 +267,8 @@ class MoviesController extends Controller
         ])->json()['list'];
         $list = collect($movies);
         $list_filter = $list->where('type_id_1', (string)$type)->all();
+        if(count($list_filter)==0)
+            abort(404);  
         $list_filter = array_values($list_filter);
         $arrMovies= array_chunk($list_filter, 30);
         return $arrMovies;

@@ -1,4 +1,4 @@
-<div class="mt-8 relative overflow-hidden rounded-md w-[272px] h-96" title="{{ $movie['title'] }}">
+<div class="my-2 mx-2 relative overflow-hidden rounded-md w-[272px] h-96" title="{{ $movie['title'] }}">
     <div class="relative flex-none inline-block w-[272px] h-96">
         <div class="absolute bg-gray-400 opacity-50 rounded-lg blur object-cover w-full h-full"></div>
         <a href="{{ route('movies.show', $movie['id']) }}" class="items-center relative">
