@@ -1,7 +1,7 @@
-<div class="grid grid-cols-3 mt-8">
+<div class="grid grid-cols-3 mt-6">
     <div>
         <a href="{{ route('movies.show', $movie['id']) }}">
-            <div style="height:40px; width: 60px; ">
+            <div style="height:30px; width: 60px; ">
                 <img src="{{ $movie['poster_path'] }}" alt="poster">
             </div>
         </a>

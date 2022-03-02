@@ -94,38 +94,6 @@
     </div>
     <!-- end movie-info -->
 
-    <!-- <div
-        id="div-videocontainer" 
-        class="movie-play border-b border-gray-800" hidden>
-        <div class="container mx-auto px-3 py-1 flex md:flex-row items-center">
-            <div class="bg-gray-900 rounded">
-                <div
-                    id="video-box" 
-                    class="responsive-container overflow-auto relative">
-                    <video
-                        id="my-video"
-                        class="video-js"
-                        preload="auto"
-                        poster="{{ $movie['poster_path'] }}"
-                        controls
-                        data-setup="{}"
-                    >
-                        <source
-                            id="my-source"
-                            src="{{ $movie['videos'][0] }}"
-                            type="application/x-mpegURL"
-                        />
-                    </video>
-                    <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-                </div>
-            </div>
-        </div>
-        <div class="container mx-auto px-3 py-1 flex md:flex-row items-center">
-            <span id="episode-video" class="ml-2 text-3xl"></span>
-        </div>
-    </div> -->
-    <!-- end movie-play -->
-
     <div class="related " >
         <div class="container mx-auto px-4 py-4">
             <h1>CÓ THỂ BẠN SẼ THÍCH</h1>
@@ -151,39 +119,6 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-    var videoContainer = document.getElementById('div-videocontainer');
-    videoContainer.setAttribute("hidden","");
-
-    function playVideo(link, episode) {
-        videoContainer.removeAttribute('hidden','');
-        document.querySelector('#div-videocontainer').scrollIntoView({ behavior: 'smooth', block: 'end'});
-        document.getElementById('episode-video').innerHTML = episode;
-        console.log(link);
-        videojs('my-video').pause();
-        videojs('my-video').dispose();
-        document.getElementById('video-box').innerHTML = '';
-        var str2 = `
-            <video id="my-video"  class="video-js"
-                poster="{{ $movie['poster_path'] }}"
-                controls
-                preload="auto"
-                data-setup="{}"
-            >
-                <source id="source" src="${link}" type="application/x-mpegURL">
-            </video>`;
-        document.getElementById('video-box').innerHTML = str2;
-        videojs('my-video', {
-            bigPlayButton: true,
-            textTrackDisplay: false,
-            posterImage: true,
-            errorDisplay: false
-        }, function () {
-            // this.play();
-        });
-    }
-
-</script>
 
 <script type="text/javascript">
     document.getElementById("playBtn").onclick = function () {

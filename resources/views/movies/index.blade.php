@@ -32,7 +32,6 @@
                 @foreach ($movies ->sortBy('score')-> take(10) as $movie)
                     <x-movie-rank :movie="$movie" />
                 @endforeach
-
             </div>
         </div> <!-- end pouplar-movies -->
     </div>

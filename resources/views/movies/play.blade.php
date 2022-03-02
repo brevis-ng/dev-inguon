@@ -1,44 +1,72 @@
 @extends('layouts.main')
 
 @section('content')
-<div>
-    <div class="container mx-auto flex flex-col md:flex-row text-center">
-        <div class="relative container aspect-w-16 aspect-h-9 max-h-[80%]">
-            <div class="bg-gray-900 py-4 px-2">
+<div class="play-movie">
+    <div class="container mx-auto flex flex-col sm:flex-row md:flex-row justify-center px-4 py-6">
+        <div class="relative object-cover container md:aspect-w-16 md:aspect-h-9 lg:aspect-none justify-center">
+            <div class="mx-auto" id="videoBox">
                 <video
-                    class="w-full video-js min-h-[80%] top-0 left-0"
-                    id="my-video"
+                    class="w-full min-h-full video-js top-0 left-0 absolute"
+                    id="playVideo"
                     preload="auto"
                     controls
                     data-setup="{}"
                 >
                     <source
-                        id="my-source"
-                        src="http://play.choiinguon.com/20220228/208_36027023/index.m3u8"
+                        id="playVideoSource"
+                        src="{{ $movie['videos'][0] }}"
                         type="application/x-mpegURL"
                     />
                 </video>
                 <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
             </div>
         </div>
-        <div class="w-[365px]">
-            <h1>XEM PHIM</h1>
-            <div class="inline-grid grid-cols-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-                @if (count($movie['videos']) > 0)
-                        @if (count($movie['videos']) == 1)
-                            @php
-                                $link = $movie['videos'][0]
-                            @endphp
-                            <span class="ml-2">XEM PHIM</span>
-                        @else
-                            @foreach ($movie['videos'] as $link)
-                                <span class="ml-2">Tập {{ $loop->index + 1 }}</span>
-                            @endforeach
-                        @endif
+        <div class="text-center justify-center px-4 bg-gray-800">
+            <h1 class="text-lg my-4 md:mt-1 hover:text-orange-500 font-semibold">{{ $movie['title'] }}</h1>
+            @if (count($movie['videos']) > 0)
+                @if (count($movie['videos']) == 1)
+                    <ul class="overflow-y-scroll h-80 md:h-96 lg:h-96 text-justify scrollbar-thin  scrollbar-thumb-slate-700">
+                        @foreach ($related as $m_r)
+                        <li class="py-2 relative flex hover:bg-gray-700 cursor-pointer">
+                            <div class="w-32 h-16 my-auto relative inline-block">
+                                <div class="w-full h-full">
+                                    <a href="{{ route('movies.show', $m_r['id']) }}"><img class="w-full h-full object-cover rounded-xl" src="{{ $m_r['poster_path'] }}" alt="{{ $m_r['title'] }}"></a>
+                                </div>
+                            </div>
+                            <div class="inline-block px-4 w-40 inset-x-0 text-justify my-auto">
+                                <a class="hover:text-orange-500" href="{{ route('movies.show', $m_r['id']) }}">{{ $m_r['title'] }}</a>
+                            </div>
+                        </li>
+                        @endforeach
+                        @foreach ($related as $m_r)
+                        <li class="py-2 relative flex">
+                            <div class="w-32 h-16 relative inline-block cursor-pointer">
+                                <div class="w-full h-full">
+                                    <a href="{{ route('movies.show', $m_r['id']) }}"><img class="w-full h-full object-cover rounded-xl" src="{{ $m_r['poster_path'] }}" alt="{{ $m_r['title'] }}"></a>
+                                </div>
+                            </div>
+                            <div class="inline-block px-4 w-40 inset-x-0 text-justify">
+                                <a href="{{ route('movies.show', $m_r['id']) }}">{{ $m_r['title'] }}</a>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <div class="inline-grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                        @foreach ($movie['videos'] as $video)
+                            <div id="episode_{{ $loop->index + 1 }}" class="w-11 h-11 mt-3 bg-slate-700 rounded relative overflow-hidden">
+                                <button class="btnPlayVideo" data-videoLink="{{ $video }}">
+                                    <span class="object-cover hover:text-orange-500">{{ $loop->index + 1 }}</span>
+                                </button>
+                                <span class="absolute bottom-0 inset-x-0 bg-orange-900 opacity-75 text-orange-400 text-xs">{{$movie['remarks']}}</span>
+                            </div>
+                        @endforeach
+                    </div>
                 @endif
-            </div>
+            @endif
         </div>
     </div>
+<<<<<<< HEAD
     <!-- end movie-info -->
     <div class="related " >
         <div class="container mx-auto px-4 py-4">
@@ -55,63 +83,73 @@
                             <svg class="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"/></g></svg>
                             <span class="ml-1">{{ $m_r['remarks'] }}</span>
                         </div>
+=======
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-xl my-4 md:mt-0">CÓ THỂ BẠN SẼ THÍCH</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            @foreach ($related as $m_r)
+            <div class="relative overflow-hidden rounded-md w-[215px] h-[300px]" title="{{ $m_r['title'] }}">
+                <a href="{{ route('movies.show', $m_r['id']) }}">
+                    <img src="{{ $m_r['poster_path'] }}" alt="poster" class="object-cover w-full h-full">
+                </a>
+                <div class="absolute pt-2 bottom-0 inset-x-0 bg-gray-700 text-white leading-4">
+                    <a href="{{ route('movies.show', $m_r['id']) }}" class="truncate hover:text-gray-300">{{ $m_r['title'] }}</a>
+                    <div class="flex items-center text-gray-400 text-sm mt-1">
+                        <svg class="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"/></g></svg>
+                        <span class="ml-1">{{ $m_r['remarks'] }}</span>
+>>>>>>> 200c167d3418157ed1d2ff1a7d270d452d291c8d
                     </div>
                 </div>
-                @endforeach
             </div>
+            @endforeach
         </div>
     </div>
     <!-- area comment -->
         @include('movies.comment')
     <!-- end comment are -->
 </div>
+<!-- end movie-play -->
 
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-    var videoContainer = document.getElementById('div-videocontainer');
-    videoContainer.setAttribute("hidden","");
 
-    function playVideo(link, episode) {
-        videoContainer.removeAttribute('hidden','');
-        document.querySelector('#div-videocontainer').scrollIntoView({ behavior: 'smooth', block: 'end'});
-        document.getElementById('episode-video').innerHTML = episode;
-        console.log(link);
-        videojs('my-video').pause();
-        videojs('my-video').dispose();
-        document.getElementById('video-box').innerHTML = '';
-        var str2 = `
-            <video id="my-video"  class="video-js"
-                poster="{{ $movie['poster_path'] }}"
-                controls
-                preload="auto"
-                data-setup="{}"
-            >
-                <source id="source" src="${link}" type="application/x-mpegURL">
-            </video>`;
-        document.getElementById('video-box').innerHTML = str2;
-        videojs('my-video', {
-            bigPlayButton: true,
-            textTrackDisplay: false,
-            posterImage: true,
-            errorDisplay: false
-        }, function () {
-            // this.play();
-        });
-    }
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $(".btnPlayVideo").bind('click', function(e) {
+            console.log($(this).attr('data-videoLink'));
+            console.log($(this).closest('div').attr('id'));
+
+            nextVideo = $(this).attr('data-videoLink');
+            $(this).closest('div').parent().children('div').css('background-color', 'rgb(51 65 85)');
+            $(this).closest('div').css('background-color', 'rgb(45 212 191)');
+            videojs('playVideo').pause();
+            videojs('playVideo').dispose();
+            var videoElement = `
+                <video
+                    id="playVideo"
+                    class="w-full min-h-full video-js top-0 left-0 absolute"
+                    controls
+                    preload="auto"
+                    data-setup="{}"
+                >
+                    <source id="playVideoSource" src="${ nextVideo }" type="application/x-mpegURL">
+                </video>`;
+            $('#videoBox').html(videoElement);
+
+            videojs('playVideo', {
+                bigPlayButton: true,
+                textTrackDisplay: false,
+                errorDisplay: false
+            }, function () {
+                this.play();
+            });
+
+            e.preventDefault();
+        })
+    });
 
 </script>
 
-<script type="text/javascript">
-    document.getElementById("playBtn").onclick = function () {
-        location.href = '{{ route("movies.play", $movie["id"]) }}';
-    };
-    document.getElementById("downBtn").onclick = function () {
-        location.href = '{{ route("movies.index") }}';
-    };
-    document.getElementById("shareBtn").onclick = function () {
-        location.href = '{{ route("movies.index") }}';
-    };
-</script>
 @endsection
