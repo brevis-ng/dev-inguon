@@ -1,4 +1,4 @@
-<div class=" border-gray-800 border-t bg-gray-900 mt-4" id="footer">
+<div class=" border-gray-800 border-t bg-gray-900 mt-4 mb-0" id="footer">
     <div class="w-1200 text-center">
         <div class="py-5">
             <ul>
@@ -13,9 +13,9 @@
         </div>
     </div>
 </div>
-<script>
+<!-- <script>
     var result = $("#movies-content").height();
     if(result < 1000){
         $("#footer").addClass("footer");
     }
-</script>
+</script> -->
