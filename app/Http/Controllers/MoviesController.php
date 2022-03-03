@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ViewModels\MovieViewModel;
 use App\ViewModels\MoviesViewModel;
 use Illuminate\Support\Facades\Http;
+use App\Comment;
 use PhpOption\None;
 
 class MoviesController extends Controller
@@ -102,7 +103,10 @@ class MoviesController extends Controller
             't' => $movie[0]['type_id'],
         ])->json()['list'];
 
-        $viewModel = new MovieViewModel($movie, $related_movies);
+        $comment = Comment::where('IdVod',$id)->orderBy('created_at','DESC')->get()->groupBy(function($data) {
+            return $data->created_at->format('Y-m-d');
+        })->toArray();
+        $viewModel = new MovieViewModel($movie, $related_movies ,$comment);
 
         return view('movies.play', $viewModel);
     }

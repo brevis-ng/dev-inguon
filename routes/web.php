@@ -30,4 +30,6 @@ Route::get('year/{number}/{page?}', [MoviesController::class, 'year'])->name('mo
 // Xem phim
 Route::get('/play/{id}', [MoviesController::class, 'play'])->name('movies.play');
 // post commment
-Route::post('ajax-request', 'CommentController@store');
+Route::post('/comment', [CommentController::class, 'store']);
+// get comment
+Route::get('play/comment/{id}', [CommentController::class, 'index']);
