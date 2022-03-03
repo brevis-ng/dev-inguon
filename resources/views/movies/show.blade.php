@@ -39,7 +39,14 @@
                         Năm phát hành: <a href="{{ route('movies.year', $y) }}" class="hover:text-orange-500">{{ $movie['release_date'] }}</a>
                     </p>
                     <p class="text-gray-300 mt-4">
-                        Thể loại: <a href="#" class="hover:text-orange-500">{{ $movie['genres'] }}</a>
+                        Thể loại:
+                        @if (count($movie['genres']) > 0)
+                            @foreach($movie['genres'] as $genre)
+                                @if ($genre != '')
+                                    <a href="#" class="hover:text-orange-500">{{ $genre }}</a><span>,&nbsp;</span>
+                                @endif
+                            @endforeach
+                        @endif
                     </p>
                     <p class="text-gray-300 mt-4">
                         Đạo diễn: <a href="#" class="hover:text-orange-500">{{ $movie['director'] }}</a>
