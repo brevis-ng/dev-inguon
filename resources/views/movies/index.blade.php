@@ -10,11 +10,11 @@
                     <x-movie-card :movie="$movie" />
                 @endforeach
             </div>
-            <div class="page-movies flex flex-row row-span-1 mt-8" style="margin-left: -0.75em;vertical-align: middle;">
+            <div class="justify-center page-movies flex flex-row row-span-1 mt-8" style="margin-left: -0.75em;vertical-align: middle;">
                 @if ($pages > 1)
                     @for ($idx = 1; $idx <= $pages; $idx++)
-                        <div class="w-10 text-center bg-blue-600 ml-3 rounded-sm" >
-                            <a href="{{ $uri }}/{{ $idx }}">{{ $idx }}</a>
+                        <div id="page_{{ $idx }}" class="w-10 text-center ml-3 rounded-sm" >
+                            <a class="toPage" href="{{ $uri }}/{{ $idx }}" data-page="page_{{ $idx }}">{{ $idx }}</a>
                         </div>
                     @endfor
                 @endif
@@ -29,4 +29,23 @@
             </div>
         </div> <!-- end pouplar-movies -->
     </div>
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        console.log(localStorage['curPage'] || 'defaultValue');
+
+        $('#' + localStorage['curPage']).css('background-color', 'rgb(51 65 85)');
+        localStorage['curPage'] = 'page_1';
+
+        $('.toPage').bind('click', function(e) {
+            localStorage['curPage'] = $(this).attr('data-page');
+
+            $(this).closest('div').parent().children('div').css('background-color', '');
+            $('#' + localStorage['curPage']).css('background-color', 'rgb(51 65 85)');
+        })
+    });
+</script>
 @endsection
