@@ -41,12 +41,14 @@ class MovieViewModel extends ViewModel
             $m3u8Links = collect(explode("#", $m3u8Links))->map(function($link) {
                 return explode('$', $link)[1];
             });
+            $genres = $movie['vod_class'] == "" ? $movie['type_name'] : $movie['vod_class'];
+
             return [
                 'poster_path' => $movie['vod_pic'],
                 'title' => $movie['vod_name'],
                 'vote_average' => (int)$movie['vod_up'],
                 'release_date' => $movie['vod_pubdate'] === "" ? $movie['vod_year'] : $movie['vod_pubdate'],
-                'genres' => $movie['vod_class'] == "" ? $movie['type_name'] : $movie['vod_class'],
+                'genres' => preg_split("/[,，、.；;]/", $genres),
                 'lang' => $movie['vod_lang'],
                 // 'overview' => str_replace(str_split('<p>,</p>'), "", $movie['vod_content']),
                 'overview' => $movie['vod_content'],

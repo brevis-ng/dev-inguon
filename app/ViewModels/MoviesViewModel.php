@@ -12,16 +12,16 @@ class MoviesViewModel extends ViewModel
     public $hightlightMovies;
     public $nowPlayingMovies;
     public $msg;
-    public $pageMovies;
-    public $typeMovies;
+    public $pages;
+    public $uri;
 
-    public function __construct($movies, $hightlightMovies = null,$pageMovies = null, $msg = null,$typeMovies=null)
+    public function __construct($movies, $hightlightMovies = null, $pages = null, $msg = null, $uri=null)
     {
         $this->movies = $movies;
         $this->hightlightMovies = $hightlightMovies;
         $this->msg = $msg;
-        $this->pageMovies = $pageMovies;
-        $this->typeMovies = $typeMovies;
+        $this->pages = $pages;
+        $this->uri = $uri;
     }
 
     public function movies()
