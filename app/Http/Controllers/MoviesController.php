@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ViewModels\MovieViewModel;
 use App\ViewModels\MoviesViewModel;
 use Illuminate\Support\Facades\Http;
+use App\Comment;
 use PhpOption\None;
 
 class MoviesController extends Controller
@@ -22,12 +23,13 @@ class MoviesController extends Controller
             'pg' => $page
         ])->json();
 
-        $hightlightMovies = $jsonResponse['list'];
+        $movies = $jsonResponse['list'];
         $pageMovies = $jsonResponse['pagecount'];
-        $newMoviesToday = $jsonResponse['list'];
 
-        $viewModel = new MoviesViewModel($newMoviesToday,$hightlightMovies,$pageMovies);
+        $moviesChunk = collect($movies)->take(24);
+        $slideMovies = collect($movies)->shuffle();
 
+        $viewModel = new MoviesViewModel($moviesChunk, $slideMovies, $pageMovies);
         return view('movies.index', $viewModel);
     }
 
@@ -101,7 +103,10 @@ class MoviesController extends Controller
             't' => $movie[0]['type_id'],
         ])->json()['list'];
 
-        $viewModel = new MovieViewModel($movie, $related_movies);
+        $comment = Comment::where('IdVod',$id)->orderBy('created_at','DESC')->get()->groupBy(function($data) {
+            return $data->created_at->format('Y-m-d');
+        })->toArray();
+        $viewModel = new MovieViewModel($movie, $related_movies ,$comment);
 
         return view('movies.play', $viewModel);
     }
@@ -150,42 +155,51 @@ class MoviesController extends Controller
     {
         switch ($genre_name) {
             case 'phim-hoat-hinh':
-                $movies = $this->get_movies_genre(4,$page,'phim-hoat-hinh');
+                $movies = $this->get_movies_genre(4, $page);
+                $msg = 'PHIM HOẠT HÌNH';
                 break;
             case 'phim-hanh-dong':
-                $movies = $this->get_movies_genre(6,$page,'phim-hanh-dong');
+                $movies = $this->get_movies_genre(6, $page);
+                $msg = 'PHIM HÀNH ĐỘNG';
                 break;
             case 'phim-hai':
-                $movies = $this->get_movies_genre(7,$page,'phim-hai');
+                $movies = $this->get_movies_genre(7, $page);
+                $msg = 'PHIM HÀI HƯỚC';
                 break;
             case 'phim-tinh-cam':
-                $movies = $this->get_movies_genre(8,$page,'phim-tinh-cam');
+                $movies = $this->get_movies_genre(8, $page);
+                $msg = 'PHIM TÌNH CẢM';
                 break;
             case 'phim-khoa-hoc-vien-tuong':
-                $movies = $this->get_movies_genre(9,$page,'phim-khoa-hoc-vien-tuong');
+                $movies = $this->get_movies_genre(9, $page);
+                $msg = 'PHIM KHOA HỌC VIỄN TƯỞNG';
                 break;
             case 'phim-khung-bo':
-                $movies = $this->get_movies_genre(10,$page,'phim-khung-bo');
+                $movies = $this->get_movies_genre(10, $page);
+                $msg = 'PHIM KHỦNG BỐ';
                 break;
             case 'phim-toi-pham':
-                $movies = $this->get_movies_genre(11,$page,'phim-toi-pham');
+                $movies = $this->get_movies_genre(11, $page);
+                $msg = 'PHIM TỘI PHẠM';
                 break;
             case 'phim-chien-tranh':
-                $movies = $this->get_movies_genre(12,$page,'phim-chien-tranh');
+                $movies = $this->get_movies_genre(12, $page);
+                $msg = 'PHIM CHIẾN TRANH';
                 break;
             case 'phim-tai-lieu':
-                $movies = $this->get_movies_genre(20,$page,'phim-tai-lieu');
+                $movies = $this->get_movies_genre(20, $page);
+                $msg = 'PHIM TÀI LIỆU';
                 break;
             case 'phim-kich-tinh':
-                $movies = $this->get_movies_genre(21,$page,'phim-kich-tinh');
+                $movies = $this->get_movies_genre(21, $page);
+                $msg = 'PHIM KỊCH TÍNH';
                 break;
             default:
                 abort(404);
         };
-        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
-            'ac' => 'detail',
-        ])->json()['list'];
-        $viewModel = new MoviesViewModel($movies[0], $hightlightMovies, $movies[1],'THE LOAI',$movies[2]);
+        $slideMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', ['ac' => 'detail',])->json()['list'];
+        $slideMovies = collect($slideMovies)->shuffle();
+        $viewModel = new MoviesViewModel($movies[0], $slideMovies, $movies[1], $msg, $genre_name);
         return view('movies.index', $viewModel);
     }
 
@@ -195,40 +209,48 @@ class MoviesController extends Controller
      * @param  str  $country_name
      * @return \Illuminate\Http\Response
      */
-    public function countries($country_name,$page=null)
+    public function countries($country_name, $page=null)
     {
         switch ($country_name) {
             case 'phim-trung-quoc':
-                $movies = $this->get_movies_genre(13,$page,'phim-trung-quoc');
+                $movies = $this->get_movies_genre(13, $page);
+                $msg = 'PHIM TRUNG QUỐC';
                 break;
             case 'phim-nhat-ban':
-                $movies = $this->get_movies_genre(23,$page,'phim-nhat-ban');
+                $movies = $this->get_movies_genre(23, $page);
+                $msg = 'PHIM NHẬT BẢN';
                 break;
             case 'phim-thai-lan':
-                $movies = $this->get_movies_genre(13,$page,'phim-thai-lan');
+                $movies = $this->get_movies_genre(13, $page);
+                $msg = 'PHIM THÁI LAN';
                 break;
             case 'phim-han-quoc':
-                $movies = $this->get_movies_genre(22,$page,'phim-han-quoc');
+                $movies = $this->get_movies_genre(22, $page);
+                $msg = 'PHIM HÀN QUỐC';
                 break;
             case 'phim-au-my':
-                $movies = $this->get_movies_genre(16,$page,'phim-au-my');
+                $movies = $this->get_movies_genre(16, $page);
+                $msg = 'PHIM ÂU MỸ';
                 break;
             case 'phim-dai-loan':
-                $movies = $this->get_movies_genre(15,$page,'phim-dai-loan');
+                $movies = $this->get_movies_genre(15, $page);
+                $msg = 'PHIM ĐÀI LOAN';
                 break;
             case 'phim-hong-kong':
-                $movies = $this->get_movies_genre(14,$page,'phim-hong-kong');
+                $movies = $this->get_movies_genre(14, $page);
+                $msg = 'PHIM HỒNG KÔNG';
                 break;
             case 'phim-an-do':
-                $movies = $this->get_movies_genre(13,$page,'phim-an-do');
+                $movies = $this->get_movies_genre(13, $page);
+                $msg = 'PHIM ẤN ĐỘ';
                 break;
             default:
                 abort(404);
         };
-        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
-            'ac' => 'detail',
-        ])->json()['list'];
-        $viewModel = new MoviesViewModel($movies[0], $hightlightMovies,$movies[1], 'QUOC GIA', $movies[2]);
+
+        $slideMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', ['ac' => 'detail',])->json()['list'];
+        $slideMovies = collect($slideMovies)->shuffle();
+        $viewModel = new MoviesViewModel($movies[0], $slideMovies, $movies[1], $msg, $country_name);
         return view('movies.index', $viewModel);
     }
 
@@ -240,23 +262,21 @@ class MoviesController extends Controller
      */
     public function list($type,$page=1)
     {
-        $typeMovies = null;
         switch ($type) {
             case 'phim-le':
                 $movies = $this->get_movies_type(1);
-                $typeMovies = 'phim-le';
+                $msg = 'PHIM LẺ';
                 break;
             case 'phim-bo':
                 $movies = $this->get_movies_type(2);
-                $typeMovies = 'phim-bo';
+                $msg = 'PHIM BỘ';
                 break;
             default:
                 abort(404);
         };
-        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
-            'ac' => 'detail',
-        ])->json()['list'];
-        $viewModel = new MoviesViewModel(collect($movies[$page-1]), $hightlightMovies,count($movies), $type == 'phim-le' ? 'PHIM LẺ' : 'PHIM BỘ',$typeMovies);
+        $slideMovies = collect($movies[0])->shuffle();
+        $moviesWithType = $movies[1];
+        $viewModel = new MoviesViewModel($moviesWithType[$page-1], $slideMovies, count($movies), $msg, $type);
         return view('movies.index', $viewModel);
     }
 
@@ -265,53 +285,44 @@ class MoviesController extends Controller
         $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail'
         ])->json()['list'];
-        $list = collect($movies);
-        $list_filter = $list->where('type_id_1', (string)$type)->all();
-        if(count($list_filter)==0)
-            abort(404);  
-        $list_filter = array_values($list_filter);
-        $arrMovies= array_chunk($list_filter, 30);
-        return $arrMovies;
+
+        $moviesWithType = collect($movies)->where('type_id_1', (string)$type)->all();
+        $moviesWithType = array_values($moviesWithType);
+        $noMovies = count($moviesWithType);
+        if ($noMovies == 0)
+            abort(404);
+        $moviesWithType = collect(array_chunk($moviesWithType, 24));
+        return [$movies, $moviesWithType];
     }
 
-    private function get_movies_genre($id,$page,$type)
+    private function get_movies_genre($id, $page)
     {
-        $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
+        $jsonResponse = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
             't' => $id,
             'pg' => $page
-        ])->json()['list'];
+        ])->json();
 
-        $pageMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
-            'ac' => 'detail',
-            't' => $id,
-        ])->json()['pagecount'];
+        $movies = $jsonResponse['list'];
+        $pages = $jsonResponse['pagecount'];
+
         if(count($movies)==0)
-            abort(404);    
-        return [$movies,$pageMovies,$type];
+            abort(404);
+        return [$movies, $pages];
     }
 
-    public function year($number,$page=1)
-    {
-        $movies = $this->get_movies_year($number);
-        $hightlightMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
-            'ac' => 'detail',
-        ])->json()['list'];
-        $viewModel = new MoviesViewModel(collect($movies[$page-1]), $hightlightMovies,count($movies), 'NAM',$number);
-        return view('movies.index', $viewModel);
-    }
-
-    private function get_movies_year($number)
+    public function year($number, $page = 1)
     {
         $movies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', [
             'ac' => 'detail',
         ])->json()['list'];
-        $movies = collect($movies);
-        $movies_filter = $movies->where('vod_year', (string)$number)->all();
-        $movies_filter = array_values($movies_filter);
-        if(count($movies_filter)==0)
-        abort(404);
-        $arrMovies= array_chunk($movies_filter, 30);
-        return $arrMovies;
+        $moviesInYear = collect($movies)->where('vod_year', (string)$number)->all();
+        $moviesInYear = array_values($moviesInYear);
+        $noMovies = count($moviesInYear);
+        if ($noMovies == 0)
+            abort(404);
+        $moviesInYearChunk = collect(array_chunk($moviesInYear, 24));
+        $viewModel = new MoviesViewModel($moviesInYearChunk[$page-1], collect($movies)->shuffle(), $noMovies, 'PHIM NĂM ' . $number, $number);
+        return view('movies.index', $viewModel);
     }
 }
