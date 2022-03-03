@@ -38,8 +38,6 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        dump($data);
         #create or update your data here
         Comment::create($request ->all());
         return response()->json(['success'=>'Ajax request submitted successfully']);
