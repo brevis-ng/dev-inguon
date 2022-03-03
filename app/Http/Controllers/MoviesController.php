@@ -151,7 +151,7 @@ class MoviesController extends Controller
      * @param  str  $genre_name
      * @return \Illuminate\Http\Response
      */
-    public function genre($genre_name,$page=null)
+    public function genre($genre_name, $page=null)
     {
         switch ($genre_name) {
             case 'phim-hoat-hinh':
@@ -199,7 +199,8 @@ class MoviesController extends Controller
         };
         $slideMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', ['ac' => 'detail',])->json()['list'];
         $slideMovies = collect($slideMovies)->shuffle();
-        $viewModel = new MoviesViewModel($movies[0], $slideMovies, $movies[1], $msg, $genre_name);
+        $uri = route('movies.genre', ['genre_name' => $genre_name]);
+        $viewModel = new MoviesViewModel($movies[0], $slideMovies, $movies[1], $msg, $uri);
         return view('movies.index', $viewModel);
     }
 
@@ -250,7 +251,8 @@ class MoviesController extends Controller
 
         $slideMovies = Http::get('http://api.nguonphim.tv/api.php/provide/vod', ['ac' => 'detail',])->json()['list'];
         $slideMovies = collect($slideMovies)->shuffle();
-        $viewModel = new MoviesViewModel($movies[0], $slideMovies, $movies[1], $msg, $country_name);
+        $uri = route('movies.countries', ['country_name' => $country_name]);
+        $viewModel = new MoviesViewModel($movies[0], $slideMovies, $movies[1], $msg, $uri);
         return view('movies.index', $viewModel);
     }
 
@@ -276,7 +278,8 @@ class MoviesController extends Controller
         };
         $slideMovies = collect($movies[0])->shuffle();
         $moviesWithType = $movies[1];
-        $viewModel = new MoviesViewModel($moviesWithType[$page-1], $slideMovies, count($movies), $msg, $type);
+        $uri = route('movies.list', ['type' => $type]);
+        $viewModel = new MoviesViewModel($moviesWithType[$page-1], $slideMovies, count($movies), $msg, $uri);
         return view('movies.index', $viewModel);
     }
 
@@ -305,6 +308,7 @@ class MoviesController extends Controller
 
         $movies = $jsonResponse['list'];
         $pages = $jsonResponse['pagecount'];
+        $movies = collect($movies)->take(28);
 
         if(count($movies)==0)
             abort(404);
@@ -322,7 +326,8 @@ class MoviesController extends Controller
         if ($noMovies == 0)
             abort(404);
         $moviesInYearChunk = collect(array_chunk($moviesInYear, 24));
-        $viewModel = new MoviesViewModel($moviesInYearChunk[$page-1], collect($movies)->shuffle(), $noMovies, 'PHIM NĂM ' . $number, $number);
+        $uri = route('movies.year', ['number' => $number]);
+        $viewModel = new MoviesViewModel($moviesInYearChunk[$page-1], collect($movies)->shuffle(), $noMovies, 'PHIM NĂM ' . $number, $uri);
         return view('movies.index', $viewModel);
     }
 }
