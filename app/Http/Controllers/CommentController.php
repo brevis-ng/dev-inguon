@@ -14,7 +14,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comment = Comment::orderBy('created_at','DESC')->get()->groupBy(function($data) {
+            return $data->created_at->format('Y-m-d');
+        });
+        return response()->json(array('success' => true, 'comment' => $comment));
     }
 
     /**
@@ -35,8 +38,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+        dump($data);
+        #create or update your data here
         Comment::create($request ->all());
-        return true;
+        return response()->json(['success'=>'Ajax request submitted successfully']);
     }
 
     /**

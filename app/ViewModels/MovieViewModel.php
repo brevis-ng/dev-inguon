@@ -9,11 +9,13 @@ class MovieViewModel extends ViewModel
 {
     public $movie;
     public $relatedMovies;
+    public $comment;
 
-    public function __construct($movie, $relatedMovies = null)
+    public function __construct($movie, $relatedMovies = null,$comment = null)
     {
         $this->movie = $movie;
         $this->relatedMovies = $relatedMovies;
+        $this->comment =$comment;
     }
 
     public function related()
