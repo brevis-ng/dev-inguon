@@ -1004,6 +1004,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     background-color: rgb(249 115 22 / var(--tw-bg-opacity));
 }
 
+.bg-slate-500{
+    --tw-bg-opacity: 1;
+    background-color: rgb(100 116 139 / var(--tw-bg-opacity));
+}
+
 .fill-current{
     fill: currentColor;
 }
