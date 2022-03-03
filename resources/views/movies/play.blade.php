@@ -3,10 +3,10 @@
 @section('content')
 <div class="play-movie">
     <div class="container mx-auto flex flex-col sm:flex-row md:flex-row justify-center px-4 py-6">
-        <div class="relative object-cover container md:aspect-w-16 md:aspect-h-9 lg:aspect-none justify-center">
+        <div class="relative container justify-center object-cover">
             <div class="mx-auto" id="videoBox">
                 <video
-                    class="w-full min-h-full video-js top-0 left-0 absolute"
+                    class="absolute vjs-big-play-centered video-js vjs-fluid vjs-fill vjs-paused vjs-controls-enabled vjs-workinghover vjs-v7 vjs-user-active vjs_video_3-dimensions"
                     id="playVideo"
                     preload="auto"
                     controls
@@ -21,11 +21,11 @@
                 <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
             </div>
         </div>
-        <div class="text-center justify-center px-4 bg-gray-800">
+        <div class="text-center justify-center bg-gray-800">
             <h1 class="text-lg my-4 md:mt-1 hover:text-orange-500 font-semibold">{{ $movie['title'] }}</h1>
             @if (count($movie['videos']) > 0)
                 @if (count($movie['videos']) == 1)
-                    <ul class="overflow-y-scroll h-80 md:h-96 lg:h-96 text-justify scrollbar-thin  scrollbar-thumb-slate-700">
+                    <ul class="overflow-y-scroll h-80 md:h-96 lg:h-96 text-justify scrollbar-thin  scrollbar-thumb-slate-400">
                         @foreach ($related as $m_r)
                         <li class="py-2 relative flex hover:bg-gray-700 cursor-pointer">
                             <div class="w-32 h-16 my-auto relative inline-block">
@@ -40,7 +40,7 @@
                         @endforeach
                     </ul>
                 @else
-                    <div class="inline-grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+                    <div id="episodeBox" class="px-4 content-start overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-400 inline-grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-2 text-center">
                         @foreach ($movie['videos'] as $video)
                             <div id="episode_{{ $loop->index + 1 }}" class="w-11 h-11 mt-3 bg-slate-700 rounded relative overflow-hidden">
                                 <button class="btnPlayVideo" data-videoLink="{{ $video }}">
@@ -86,6 +86,10 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+
+        $("#episodeBox").css({'height':($("#videoBox").height()*0.7+'px')});
+        $("#episodeBox").css({'width':($("#videoBox").width()/5+'px')});
+
         $(".btnPlayVideo").bind('click', function(e) {
             console.log($(this).attr('data-videoLink'));
             console.log($(this).closest('div').attr('id'));
@@ -98,7 +102,7 @@
             var videoElement = `
                 <video
                     id="playVideo"
-                    class="w-full min-h-full video-js top-0 left-0 absolute"
+                    class="absolute vjs-big-play-centered video-js vjs-16-9 vjs-paused vjs-controls-enabled vjs-workinghover vjs-v7 vjs-user-active vjs_video_3-dimensions"
                     controls
                     preload="auto"
                     data-setup="{}"
