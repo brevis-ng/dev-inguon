@@ -22,6 +22,7 @@ module.exports = {
         dropShadow: ['responsive', 'hover', 'focus'],
     },
     plugins: [
+        require('postcss-import'),
         require('tailwindcss-spinner')(),
         require('tailwindcss'),
         require('autoprefixer'),

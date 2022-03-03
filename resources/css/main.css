@@ -1,4 +1,7 @@
-@tailwind base;
+@import 'base.css';
+@import '@videojs/themes/dist/forest/index.css';
+@import '@videojs/themes/dist/fantasy/index.css';
+@import '@videojs/themes/dist/city/index.css';
 
 @tailwind components;
 
