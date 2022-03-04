@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="text-center justify-center bg-gray-800">
-            <h1 class="text-lg my-4 md:mt-1 hover:text-orange-500 font-semibold">{{ $movie['title'] }}</h1>
+            <h1 class="text-lg my-4 md:mt-1 hover:text-orange-500 font-semibold max-w-xs">{{ $movie['title'] }}</h1>
             @if (count($movie['videos']) > 0)
                 @if (count($movie['videos']) == 1)
                     <ul id="episodeBox" class="px-4 content-start overflow-y-scroll text-justify scrollbar-thin scrollbar-thumb-slate-400">
@@ -58,15 +58,27 @@
         <h1 class="text-xl my-4 md:mt-0">CÓ THỂ BẠN SẼ THÍCH</h1>
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
             @foreach ($related as $m_r)
-            <div class="relative overflow-hidden rounded-md w-[215px] h-[300px]" title="{{ $m_r['title'] }}">
-                <a href="{{ route('movies.show', $m_r['id']) }}">
-                    <img src="{{ $m_r['poster_path'] }}" alt="poster" class="object-cover w-full h-full">
-                </a>
-                <div class="absolute pt-2 bottom-0 inset-x-0 bg-gray-700 text-white leading-4">
-                    <a href="{{ route('movies.show', $m_r['id']) }}" class="truncate hover:text-gray-300">{{ $m_r['title'] }}</a>
-                    <div class="flex items-center text-gray-400 text-sm mt-1">
+            <div class="my-2 mx-2 relative overflow-hidden rounded-md h-80" title="{{ $m_r['title'] }}">
+                <div class="poster group relative flex-none inline-block object-cover w-full h-full">
+                    <div class="absolute bg-gray-400 opacity-50 rounded-lg blur object-cover w-full h-full"></div>
+                    <div class="grid place-items-center">
+                        <a href="{{ route('movies.show', $m_r['id']) }}" class="items-center mx-auto relative grid place-items-center">
+                            <img src="{{ $m_r['poster_path'] }}" alt="{{ $m_r['title'] }}" class="lazyload w-full h-full object-cover overflow-hidden group-hover:opacity-80 group-hover:scale-125 transition duration-300 ease-in-out">
+                            <i class="place-items-center group-hover:opacity-80 group-hover:scale-100 absolute h-14 w-14 bg-yellow-500 rounded-full opacity-0 transition duration-300 ease-in-out scale-150">
+                                <div class="w-5 overflow-hidden inline-block mx-6 my-3">
+                                    <div class="h-10 bg-white rotate-45 transform origin-top-left"></div>
+                                </div>
+                            </i>
+                        </a>
+                    </div>
+                </div>
+                <div class="absolute py-2 bottom-0 inset-x-0 bg-gray-900 text-white leading-4 opacity-90">
+                    <a href="{{ route('movies.show', $m_r['id']) }}" class="truncate mt-2 hover:text-gray-300">{{ $m_r['title'] }}</a>
+                    <div class="flex items-center text-sm mt-1">
                         <svg class="fill-current text-orange-500 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"/></g></svg>
                         <span class="ml-1">{{ $m_r['remarks'] }}</span>
+                        <span class="mx-2">|</span>
+                        <span class="text-gray-200 text-sm">{{ $m_r['type'] }}</span>
                     </div>
                 </div>
             </div>
