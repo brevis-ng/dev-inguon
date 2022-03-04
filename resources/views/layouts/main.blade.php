@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
 </head>
 
 <body class="font-sans bg-gray-900 text-white">

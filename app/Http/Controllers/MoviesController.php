@@ -26,10 +26,9 @@ class MoviesController extends Controller
         $movies = $jsonResponse['list'];
         $pageMovies = $jsonResponse['pagecount'];
 
-        $moviesChunk = collect($movies)->take(24);
         $slideMovies = collect($movies)->shuffle();
 
-        $viewModel = new MoviesViewModel($moviesChunk, $slideMovies, $pageMovies);
+        $viewModel = new MoviesViewModel($movies, $slideMovies, $pageMovies);
         return view('movies.index', $viewModel);
     }
 
@@ -347,7 +346,6 @@ class MoviesController extends Controller
 
         $movies = $jsonResponse['list'];
         $pages = $jsonResponse['pagecount'];
-        $movies = collect($movies)->take(28);
 
         if (count($movies) == 0)
             abort(404);
@@ -364,7 +362,7 @@ class MoviesController extends Controller
         $noMovies = count($moviesInYear);
         if ($noMovies == 0)
             abort(404);
-        $moviesInYearChunk = collect(array_chunk($moviesInYear, 24));
+        $moviesInYearChunk = collect(array_chunk($moviesInYear, 30));
         $uri = route('movies.year', ['number' => $number]);
         $viewModel = new MoviesViewModel($moviesInYearChunk[$page - 1], collect($movies)->shuffle(), $noMovies, 'PHIM NĂM ' . $number, $uri);
         return view('movies.index', $viewModel);
