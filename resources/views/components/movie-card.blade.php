@@ -1,5 +1,5 @@
 <div class="my-2 mx-2 relative overflow-hidden rounded-md h-80" title="{{ $movie['title'] }}">
-    <div class="poster group relative flex-none inline-block">
+    <div class="poster group relative flex-none inline-block object-cover w-full h-full">
         <div class="absolute bg-gray-400 opacity-50 rounded-lg blur object-cover w-full h-full"></div>
         <div class="grid place-items-center">
             <a href="{{ route('movies.show', $movie['id']) }}" class="items-center mx-auto relative grid place-items-center">
