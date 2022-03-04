@@ -16,3 +16,5 @@ mix.postCss('resources/css/main.css', 'public/css', [
     require('tailwindcss'),
 ])
 .purgeCss();
+
+mix.js('resources/js/app.js', 'public/js');

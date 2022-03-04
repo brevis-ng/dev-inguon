@@ -43,7 +43,7 @@
                     <div id="episodeBox" class="px-4 content-start overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-400 inline-grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-2 text-center">
                         @foreach ($movie['videos'] as $video)
                             <div id="episode_{{ $loop->index + 1 }}" class="w-11 h-11 mt-3 bg-slate-700 rounded relative overflow-hidden">
-                                <button class="btnPlayVideo" data-videoLink="{{ $video }}">
+                                <button class="btnPlayVideo" data-videoLink="{{ $video }}" data-episode="Tập {{ $loop->index + 1 }}">
                                     <span class="object-cover hover:text-orange-500">{{ $loop->index + 1 }}</span>
                                 </button>
                                 <span class="absolute bottom-0 inset-x-0 bg-orange-900 opacity-75 text-orange-400 text-xs">{{$movie['remarks']}}</span>
@@ -90,11 +90,40 @@
         $("#episodeBox").css({'height':($("#videoBox").height()*0.7+'px')});
         $("#episodeBox").css({'width':($("#videoBox").width()/5+'px')});
 
-        $(".btnPlayVideo").bind('click', function(e) {
-            console.log($(this).attr('data-videoLink'));
-            console.log($(this).closest('div').attr('id'));
+        function genVideoTitle(title) {
+            var Component = videojs.getComponent('Component');
+            var TitleBar = videojs.extend(Component, {
+                constructor: function(player, options) {
+                Component.apply(this, arguments);
+                    if (options.text) {
+                        this.updateTextContent(options.text);
+                    }
+                },
+                createEl: function() {
+                    return videojs.dom.createEl('div', {
+                        className: 'vjs-title-bar'
+                    });
+                },
+                updateTextContent: function(text) {
+                if (typeof text !== 'string') {
+                    text = 'Title Unknown';
+                }
+                videojs.dom.emptyEl(this.el());
+                videojs.dom.appendContent(this.el(), text);
+                }
+            });
+            videojs.registerComponent('TitleBar', TitleBar);
+            var player = videojs('playVideo');
+            player.addChild('TitleBar', {text: title});
+        }
+        genVideoTitle("{{ $movie['title'] }}");
+        $('#episode_1').css('background-color', 'rgb(45 212 191)');
 
-            nextVideo = $(this).attr('data-videoLink');
+        $(".btnPlayVideo").bind('click', function(e) {
+
+            $('.vjs-title-bar').remove();
+            let episode = $(this).attr('data-episode');
+            let nextVideo = $(this).attr('data-videoLink');
             $(this).closest('div').parent().children('div').css('background-color', 'rgb(51 65 85)');
             $(this).closest('div').css('background-color', 'rgb(45 212 191)');
             videojs('playVideo').pause();
@@ -118,6 +147,8 @@
             }, function () {
                 this.play();
             });
+            let title = "{{ $movie['title'] }} - " + episode
+            genVideoTitle(title);
 
             e.preventDefault();
         })
