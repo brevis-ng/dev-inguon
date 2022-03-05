@@ -578,6 +578,26 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-bottom: auto;
 }
 
+.mx-0\.5{
+    margin-left: 0.125rem;
+    margin-right: 0.125rem;
+}
+
+.mx-0{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.mx-1{
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.mx-3{
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+}
+
 .mt-8{
     margin-top: 2rem;
 }
@@ -682,6 +702,14 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: inline-flex;
 }
 
+.table{
+    display: table;
+}
+
+.table-cell{
+    display: table-cell;
+}
+
 .grid{
     display: grid;
 }
@@ -744,6 +772,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-9{
     height: 2.25rem;
+}
+
+.h-auto{
+    height: auto;
+}
+
+.h-max{
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+}
+
+.h-fit{
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+}
+
+.max-h-80{
+    max-height: 20rem;
 }
 
 .w-6{
@@ -812,6 +860,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-9{
     width: 2.25rem;
+}
+
+.w-max{
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+}
+
+.w-fit{
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.w-\[95\%\]{
+    width: 95%;
 }
 
 .min-w-\[80\%\]{
@@ -1023,12 +1087,20 @@ Ensure the default browser behavior of the `hidden` attribute.
     border-width: 1px;
 }
 
+.border-0{
+    border-width: 0px;
+}
+
 .border-b{
     border-bottom-width: 1px;
 }
 
 .border-t{
     border-top-width: 1px;
+}
+
+.border-dashed{
+    border-style: dashed;
 }
 
 .border-none{
@@ -1133,6 +1205,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     --tw-bg-opacity: 0.7;
 }
 
+.bg-origin-border{
+    background-origin: border-box;
+}
+
 .fill-current{
     fill: currentColor;
 }
@@ -1160,6 +1236,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-6{
     padding: 1.5rem;
+}
+
+.p-4{
+    padding: 1rem;
 }
 
 .px-4{
@@ -1242,6 +1322,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 2rem;
 }
 
+.px-1{
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+}
+
 .pl-5{
     padding-left: 1.25rem;
 }
@@ -1280,6 +1365,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .text-justify{
     text-align: justify;
+}
+
+.align-middle{
+    vertical-align: middle;
 }
 
 .font-sans{
@@ -1678,6 +1767,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:text-orange-500:hover{
     --tw-text-opacity: 1;
     color: rgb(249 115 22 / var(--tw-text-opacity));
+}
+
+.hover\:text-green-600:hover{
+    --tw-text-opacity: 1;
+    color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 
 .hover\:underline:hover{
