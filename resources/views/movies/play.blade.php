@@ -54,6 +54,9 @@
             @endif
         </div>
     </div>
+    <!-- area comment -->
+    @include('movies.comment')
+    <!-- end comment are -->
     <div class="container mx-auto px-4 py-6">
         <h1 class="text-xl my-4 md:mt-0">CÓ THỂ BẠN SẼ THÍCH</h1>
         <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -85,9 +88,6 @@
             @endforeach
         </div>
     </div>
-    <!-- area comment -->
-    @include('movies.comment')
-    <!-- end comment are -->
 </div>
 <!-- end movie-play -->
 
