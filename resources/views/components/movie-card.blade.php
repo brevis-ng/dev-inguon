@@ -3,7 +3,7 @@
         <div class="absolute bg-gray-400 opacity-50 rounded-lg blur object-cover w-full h-full"></div>
         <div class="grid place-items-center">
             <a href="{{ route('movies.show', $movie['id']) }}" class="items-center mx-auto relative grid place-items-center">
-                <img src="{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}" class="lazyload w-full h-full object-cover overflow-hidden group-hover:opacity-80 group-hover:scale-125 transition duration-300 ease-in-out">
+                <img src="{{ $movie['poster_path'] }}" alt="{{ $movie['title'] }}" class="lazyload w-full h-full object-cover overflow-hidden group-hover:opacity-80 group-hover:scale-125 transition duration-200 ease-in-out">
                 <i class="place-items-center group-hover:opacity-80 group-hover:scale-100 absolute h-14 w-14 bg-yellow-500 rounded-full opacity-0 transition duration-300 ease-in-out scale-150">
                     <div class="w-5 overflow-hidden inline-block mx-6 my-3">
                         <div class="h-10 bg-white rotate-45 transform origin-top-left"></div>

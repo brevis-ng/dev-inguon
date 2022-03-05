@@ -754,12 +754,20 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 2.25rem;
 }
 
+.h-auto{
+    height: auto;
+}
+
 .max-h-32{
     max-height: 8rem;
 }
 
 .max-h-80{
     max-height: 20rem;
+}
+
+.max-h-60{
+    max-height: 15rem;
 }
 
 .w-6{
@@ -832,6 +840,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-w-\[80\%\]{
     min-width: 80%;
+}
+
+.min-w-min{
+    min-width: -webkit-min-content;
+    min-width: -moz-min-content;
+    min-width: min-content;
 }
 
 .max-w-xs{
@@ -1179,6 +1193,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding: 1.5rem;
 }
 
+.p-1{
+    padding: 0.25rem;
+}
+
 .px-4{
     padding-left: 1rem;
     padding-right: 1rem;
@@ -1259,6 +1277,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 2rem;
 }
 
+.px-6{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
 .pl-5{
     padding-left: 1.25rem;
 }
@@ -1289,6 +1312,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pr-4{
     padding-right: 1rem;
+}
+
+.pl-6{
+    padding-left: 1.5rem;
+}
+
+.pr-8{
+    padding-right: 2rem;
 }
 
 .text-center{
@@ -1519,6 +1550,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .duration-300{
     transition-duration: 300ms;
+}
+
+.duration-200{
+    transition-duration: 200ms;
 }
 
 .ease-in-out{
