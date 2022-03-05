@@ -578,6 +578,26 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-bottom: auto;
 }
 
+.mx-0\.5{
+    margin-left: 0.125rem;
+    margin-right: 0.125rem;
+}
+
+.mx-0{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.mx-1{
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.mx-3{
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+}
+
 .mt-8{
     margin-top: 2rem;
 }
@@ -754,8 +774,20 @@ Ensure the default browser behavior of the `hidden` attribute.
     height: 2.25rem;
 }
 
-.max-h-32{
-    max-height: 8rem;
+.h-auto{
+    height: auto;
+}
+
+.h-max{
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+}
+
+.h-fit{
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
 }
 
 .max-h-80{
@@ -828,6 +860,22 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-9{
     width: 2.25rem;
+}
+
+.w-max{
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+}
+
+.w-fit{
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.w-\[95\%\]{
+    width: 95%;
 }
 
 .min-w-\[80\%\]{
@@ -1021,13 +1069,26 @@ Ensure the default browser behavior of the `hidden` attribute.
     border-radius: 1rem;
 }
 
+.rounded-3xl{
+    border-radius: 1.5rem;
+}
+
 .rounded-t{
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
 }
 
+.rounded-t-3xl{
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+}
+
 .border{
     border-width: 1px;
+}
+
+.border-0{
+    border-width: 0px;
 }
 
 .border-b{
@@ -1036,6 +1097,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-t{
     border-top-width: 1px;
+}
+
+.border-dashed{
+    border-style: dashed;
 }
 
 .border-none{
@@ -1140,23 +1205,17 @@ Ensure the default browser behavior of the `hidden` attribute.
     --tw-bg-opacity: 0.7;
 }
 
-.fill-current{
-    fill: currentColor;
+.bg-origin-border{
+    background-origin: border-box;
 }
 
-.object-contain{
-    -o-object-fit: contain;
-       object-fit: contain;
+.fill-current{
+    fill: currentColor;
 }
 
 .object-cover{
     -o-object-fit: cover;
        object-fit: cover;
-}
-
-.object-fill{
-    -o-object-fit: fill;
-       object-fit: fill;
 }
 
 .p-2\.5{
@@ -1177,6 +1236,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-6{
     padding: 1.5rem;
+}
+
+.p-4{
+    padding: 1rem;
 }
 
 .px-4{
@@ -1257,6 +1320,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-8{
     padding-top: 2rem;
     padding-bottom: 2rem;
+}
+
+.px-1{
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
 }
 
 .pl-5{
