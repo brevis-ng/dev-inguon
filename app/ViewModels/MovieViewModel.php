@@ -41,6 +41,10 @@ class MovieViewModel extends ViewModel
             $m3u8Links = collect(explode("#", $m3u8Links))->map(function($link) {
                 return explode('$', $link)[1];
             });
+
+            $downLinks = collect(explode("$", $movie['vod_down_url']));
+            $downLinks->shift();
+
             $genres = $movie['vod_class'] == "" ? $movie['type_name'] : $movie['vod_class'];
 
             return [
@@ -63,6 +67,7 @@ class MovieViewModel extends ViewModel
                 'update' => $movie['vod_time'],
                 'down_url' => $movie['vod_down_url'],
                 'id' => $movie['vod_id'],
+                'downloads' => $downLinks,
             ];
         });
     }
