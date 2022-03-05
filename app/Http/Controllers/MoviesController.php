@@ -10,6 +10,7 @@ use GuzzleHttp\Promise\Utils;
 use Illuminate\Http\Client\Pool;
 use App\Comment;
 use PhpOption\None;
+use Illuminate\Support\Facades\DB;
 
 class MoviesController extends Controller
 {
@@ -277,6 +278,8 @@ class MoviesController extends Controller
             default:
                 abort(404);
         };
+        // $users = DB::table('movies_single')->get();
+        // dump($users);
         $slideMovies = collect($movies[0])->shuffle();
         $moviesWithType = $movies[1];
         $listsMovies = array_slice($moviesWithType, $page - 1, 30);

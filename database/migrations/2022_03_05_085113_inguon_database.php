@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListfilmsTable extends Migration
+class InguonDatabase extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,14 @@ class CreateListfilmsTable extends Migration
      */
     public function up()
     {
-        Schema::create('listfilms', function (Blueprint $table) {
+        Schema::create('movies_menu', function (Blueprint $table) {
+            $table->increments('Id');
+            $table->string('name');
+            $table->string('handle');
+            $table->timestamps();
+        });
+
+        Schema::create('movies', function (Blueprint $table) {
             $table->increments('Id');
             $table->integer('vod_id');
             $table->integer('type_id');
@@ -100,6 +107,38 @@ class CreateListfilmsTable extends Migration
             $table->string('type_name');
             $table->timestamps();
         });
+
+        Schema::create('movies_single', function (Blueprint $table) {
+            $table->increments('Id');
+            $table->string('name');
+            $table->integer('year');
+            $table->timestamps();
+        });
+
+        Schema::create('movies_series', function (Blueprint $table) {
+            $table->increments('Id');
+            $table->string('name');
+            $table->integer('year');
+            $table->timestamps();
+        });
+
+        Schema::create('movies_countries', function (Blueprint $table) {
+            $table->id();
+            $table->text('name');
+            $table->timestamps();
+        });
+
+        Schema::create('movies_categories', function (Blueprint $table) {
+            $table->increments('Id');
+            $table->string('category');
+            $table->timestamps();
+        });
+
+        Schema::create('movies_years', function (Blueprint $table) {
+            $table->increments('Id');
+            $table->integer('year');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -109,6 +148,12 @@ class CreateListfilmsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('listfilms');
+        Schema::dropIfExists('movies_menu');
+        Schema::dropIfExists('movies');
+        Schema::dropIfExists('movies_single');
+        Schema::dropIfExists('movies_series');
+        Schema::dropIfExists('movies_countries');
+        Schema::dropIfExists('movies_categories');
+        Schema::dropIfExists('movies_years');
     }
 }
