@@ -135,10 +135,10 @@
         </div>
     </div>
 
-    <div id="shareBox" aria-hidden="true" class="hidden bg-black bg-opacity-70 overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center h-modal md:h-full md:inset-0">
-        <div class="relative px-4 pt-48 w-full max-w-2xl h-full md:h-auto mx-auto">
+    <div id="shareBox" aria-hidden="true" class="hidden absolute bg-black bg-opacity-70 overflow-y-auto overflow-x-hidden top-0 left-0 h-full w-full">
+        <div class="table-cell align-middle md:h-auto mx-auto">
             <!-- Modal content -->
-            <div class="relative bg-gray-800 rounded-lg shadow dark:bg-gray-700 opacity-100">
+            <div class="mx-auto max-w-2xl bg-gray-800 rounded-lg shadow dark:bg-gray-700 opacity-100">
                 <!-- Modal header -->
                 <div class="flex justify-between items-start p-5 rounded-t border-b border-gray-700">
                     <h3 class="text-xl font-semibold lg:text-2xl mx-auto">
@@ -151,8 +151,8 @@
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
                     <div class="justify-center flex">
-                        <input id="shareUrl" readonly type="text" class="min-w-[80%] text-center rounded-2xl focus:outline-none border-none bg-gray-600 text-gray-100" value="link chia se">
-                        <button id="copyBtn" class="py-2 pl-4" title="Sao chép">
+                        <input id="shareUrl" readonly type="text" class="w-full focus:outline-none text-center rounded-2xl border-none bg-gray-600 text-gray-100" value="link chia se">
+                        <button id="copyBtn" class="py-2 pl-4 pr-8" title="Sao chép">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" style="stroke-width: 1;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
                         </button>
                     </div>
@@ -172,6 +172,38 @@
         </div>
     </div>
 
+    <div id="downBox" aria-hidden="true" class="hidden absolute bg-black bg-opacity-70 overflow-y-auto overflow-x-hidden top-0 left-0 h-full w-full">
+        <div class="table-cell align-middle md:h-auto mx-auto">
+            <!-- Modal content -->
+            <div class="mx-auto max-w-2xl bg-gray-800 rounded-lg shadow dark:bg-gray-700 opacity-100">
+                <!-- Modal header -->
+                <div class="flex justify-between items-start p-5 rounded-t border-b border-gray-700">
+                    <h3 class="text-xl font-semibold lg:text-2xl mx-auto">
+                        Danh sách tải phim
+                    </h3>
+                    <button id="closeDownBox" type="button" class="text-gray-400 bg-transparent hover:text-white rounded-lg text-sm inline-flex items-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6 space-y-6">
+                    @if (count($movie['downloads']) > 0)
+                        <ul class="max-h-80 px-4 content-start overflow-y-scroll text-justify scrollbar-thin scrollbar-thumb-slate-400">
+                            @foreach ($movie['downloads'] as $download)
+                            <li class="py-2 flex justify-center hover:bg-gray-700 text-center">
+                                <span class="my-auto">{{ $movie['title'] }}-{{ $loop->index + 1 }}</span>
+                                <button class="downloadBtn ml-6 hover:text-green-600" type="button" data-downLink="{{ $download }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" style="stroke-width: 1;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                                </button>
+                            </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('scripts')
@@ -179,9 +211,6 @@
 <script type="text/javascript">
     document.getElementById("playBtn").onclick = function () {
         location.href = '{{ route("movies.play", $movie["id"]) }}';
-    };
-    document.getElementById("downBtn").onclick = function () {
-        location.href = '{{ route("movies.index") }}';
     };
     let copiedLink = '';
     $(document).ready(function(){
@@ -203,6 +232,7 @@
 
         $('#shareBtn').bind('click', function(e) {
             $('#shareBox').show();
+            $('#shareBox').css('display', 'table');
             e.preventDefault();
         });
 
@@ -227,6 +257,22 @@
             copyToClipboard($(this).parent().find('input'), $(this));
             e.preventDefault();
         });
+
+        $('#downBtn').bind('click', function(e) {
+            $('#downBox').show();
+            $('#downBox').css('display', 'table');
+            e.preventDefault();
+        });
+        $('#closeDownBox').bind('click', function(e) {
+            $('#downBox').hide();
+            e.preventDefault();
+        });
+
+        $('.downloadBtn').bind('click', function(e) {
+            let link = $(this).attr('data-downLink');
+            location.href = link;
+            e.preventDefault();
+        })
     });
 </script>
 @endsection
